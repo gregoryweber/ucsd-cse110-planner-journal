@@ -1,10 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import JournalPage from './components/Journal-Page';
 
 function App() {
   return (
-    null
+    <div>
+      <JournalPage />
+    </div>
   );
 }
 
