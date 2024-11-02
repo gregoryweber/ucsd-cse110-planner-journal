@@ -12,8 +12,8 @@ const CreateSection = () => {
   }
 
   return (
-    <div style={{backgroundColor: hex}}>
-      <div className="create-section" style={{ backgroundColor: "#d8d8d8", width: '10%'}}>
+    <div>
+      <div className="create-section" style={{ backgroundColor: "#d8d8d8"}}>
         <form onSubmit={(event) => onSubmit(event)}>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center', gap: '10px', width: '100%' }}>
             <label>Create Section</label>

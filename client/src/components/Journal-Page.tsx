@@ -11,12 +11,12 @@ const JournalPage = () => {
         </div>
       </div>
 
-      <div style={{ display: 'flex'}}>
+      <div style={{ display: 'flex', width: '10%'}}>
         <CreateSection />
+      </div>
+      <div>
         <textarea></textarea>
       </div>
-      
-    
     </div>
   );
 };
