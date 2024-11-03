@@ -5,7 +5,7 @@ const CreateSection = () => {
 
   const [ sectionName, setSectionName ] = useState("");
   const [ hex, setHex ] = useState("#ffffff");
-  const [ showColorPicker, setShowColorPicker ] = useState(false);
+  const [ displayColorPicker, setDisplayColorPicker ] = useState(false);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -13,9 +13,23 @@ const CreateSection = () => {
 
   return (
     <div>
-      <div className="create-section" style={{ backgroundColor: "#d8d8d8"}}>
+      <div 
+        className="create-section" 
+        style={{ 
+          backgroundColor: "#d8d8d8"
+        }}
+      >
         <form onSubmit={(event) => onSubmit(event)}>
-          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center', gap: '10px', width: '100%' }}>
+          <div 
+            style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justifyContent: 'center', 
+              alignItems:'center', 
+              gap: '10px', 
+              width: '100%' 
+            }}
+          >
             <label>Create Section</label>
             <input
               required
@@ -28,20 +42,25 @@ const CreateSection = () => {
             />
             <button
               type="button"
-              onClick={() => setShowColorPicker(!showColorPicker)}
-              style={{ backgroundColor: "#21e4e6", color: "black", width: '100%' }}
+              onClick={() => setDisplayColorPicker(!displayColorPicker)}
+              style={{ 
+                backgroundColor: "#21e4e6", 
+                color: "black", 
+                width: '80%' 
+              }}
             >
               Select Color
             </button>
             <button
               type="submit"
               style={{ backgroundColor: "#21e4e6", color: "black", width: '50%' }}
+              onClick={() => console.log({sectionName, hex})}
             >
               Submit
             </button>
           </div>
         </form>
-        {showColorPicker && (
+        {displayColorPicker && (
           <ColorPicker
             color={hex}
             onChangeColor={(newColor) => setHex(newColor)}

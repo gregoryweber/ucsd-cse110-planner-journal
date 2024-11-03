@@ -16,6 +16,10 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ color, onChangeColor }) => {
         setHex(color.hex);
         onChangeColor(color.hex);
       }}
+      style={{
+        width: '80%',
+        height: '80%'
+      }}
     />
   );
 };
