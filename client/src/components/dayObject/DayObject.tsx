@@ -1,21 +1,50 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { DayObjectContext } from "./DayObjectContext";
 
-//Crate a DayObject component that will be used to display the tasks for that date
-const DayObject = (currentDate: Date) => {
+export type Task = {
+    id: number;
+    name: string;
+    start: string;
+    end: string;
+}
 
-    const [tasks, setTasks] = useState<Task[]>([]);
+interface DayObjectProps {
+    currentDate: Date;
+}
+
+//Create a DayObject component that will be used to display the tasks for that date
+const DayObject = ({currentDate}: DayObjectProps) => {
+
+    const context = useContext(DayObjectContext);
+
+    context.setCurrentDate(currentDate);
 
     useEffect(() => {
         loadTasks();
     }, []);
 
     const loadTasks = async () => {
-        try {
-            const taskList = await fetchTasks(currentDate);
-            setTasks(taskList);
-        } catch (err: any) {
-            console.log(err.message);
-        }
+        // try {
+        //     const taskList = await fetchTasks(currentDate);
+        //     context.setTasks(taskList);
+        // } catch (err: any) {
+        //     console.log(err.message);
+        // }
+
+        context.setTasks([
+            {
+                id: 1,
+                name: "Task 1",
+                start: "8:00 AM",
+                end: "9:00 AM"
+            },
+            {
+                id: 2,
+                name: "Task 2",
+                start: "9:00 AM",
+                end: "10:00 AM"
+            }
+        ]);
     }
 
     return (
@@ -25,10 +54,10 @@ const DayObject = (currentDate: Date) => {
                     <div className="dayObject__header__date">{currentDate.getDate()}</div>
                 </div>
                 <div className="dayObject__tasks">
-                    <DisplayTasks />
+                    <DisplayTasks/>
                 </div>
-                <AddTaskButton setTasks={setTasks}/>
-                <JournalEntryButton currentDate={currentDate}/>
+                <AddTaskButton/>
+                <JournalEntryButton/>
             </div>
         </div>
     );
@@ -36,15 +65,10 @@ const DayObject = (currentDate: Date) => {
 
 export default DayObject;
 
-//Props for AddTaskButton component
-interface AddTaskButtonProps {
-    setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
-}
-
 //Create a button component that will be used to add a task to DayObject
-const AddTaskButton = ({setTasks}: AddTaskButtonProps) => {
+const AddTaskButton = () => {
     const handleClick = () => {
-        <CreateTaskForm setTasks={setTasks} />
+        //<CreateTaskForm/>
     };
 
     return (
@@ -54,15 +78,10 @@ const AddTaskButton = ({setTasks}: AddTaskButtonProps) => {
     );
 }
 
-//Props for JournalEntryButton component
-interface JournalEntryButtonProps {
-    currentDate: Date;
-}
-
 //Create a button component that will be used to add a journal entry to DayObject
-const JournalEntryButton = ({currentDate}: JournalEntryButtonProps) => {
+const JournalEntryButton = () => {
     const handleClick = () => {
-        <Journal date={currentDate}/>
+        //<Journal/>
     };
 
     return (
@@ -74,9 +93,11 @@ const JournalEntryButton = ({currentDate}: JournalEntryButtonProps) => {
 
 //Create a component that will display the tasks for the current date
 const DisplayTasks = () => {
+    const context = useContext(DayObjectContext);
+    
     return (
         <div>
-            {tasks.map((task) => (
+            {context.tasks.map((task) => (
                 <TaskItem task={task} />
             ))}
         </div>
@@ -90,8 +111,10 @@ interface TaskItemProps {
 
 //Create a component that will display a single task
 const TaskItem = ({task}: TaskItemProps) => {
-    handleClick = () => {
-        setTasks(tasks.filter((t) => t.id !== task.id));
+    const context = useContext(DayObjectContext);
+    
+    const handleClick = () => {
+        context.setTasks(context.tasks.filter((t) => t.id !== task.id));
     }
 
     return (
