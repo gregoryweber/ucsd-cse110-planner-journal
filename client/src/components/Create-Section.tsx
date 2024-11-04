@@ -1,7 +1,16 @@
 import { useState } from "react";
-import ColorPicker from "./ColorPicker" 
+import ColorPicker from "./ColorPicker"
 
-const CreateSection = () => {
+interface Section {
+  name: string;
+  color: string;
+}
+
+interface CreateSectionProps {
+  onCreateSection: (section: Section) => void;
+}
+
+const CreateSection: React.FC<CreateSectionProps> = ({ onCreateSection }) => {
 
   const [ sectionName, setSectionName ] = useState("");
   const [ hex, setHex ] = useState("#ffffff");
@@ -9,7 +18,14 @@ const CreateSection = () => {
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-  }
+
+    if (sectionName) {
+      onCreateSection({ name: sectionName, color: hex });
+      setSectionName("");
+      setHex("#ffffff");
+      setDisplayColorPicker(false);
+    }
+  };
 
   return (
     <div>
@@ -38,6 +54,9 @@ const CreateSection = () => {
               onChange={(e) => {
                 setSectionName(e.target.value);
               }}
+              style={{
+                borderRadius: "5px",
+              }}
               placeholder="Section Name"
             />
             <button
@@ -46,14 +65,21 @@ const CreateSection = () => {
               style={{ 
                 backgroundColor: "#21e4e6", 
                 color: "black", 
-                width: '80%' 
+                width: '80%',
+                borderRadius: '5px',
+                padding: '5px',
               }}
             >
               Select Color
             </button>
             <button
               type="submit"
-              style={{ backgroundColor: "#21e4e6", color: "black", width: '50%' }}
+              style={{ 
+                backgroundColor: "#21e4e6", 
+                color: "black", 
+                width: '50%',
+                borderRadius: '5px',
+              }}
               onClick={() => console.log({sectionName, hex})}
             >
               Submit
