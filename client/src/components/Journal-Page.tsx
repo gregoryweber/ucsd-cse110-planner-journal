@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from "react";
 import CreateSection from "./Create-Section" 
 
@@ -10,10 +11,20 @@ const JournalPage: React.FC = () => {
 
   let [ sections, setSections ] = useState<Section[]>([]);
   const [ displayCreateSection, setDisplayCreateSection ] = useState(false);
+  const [ textSize, setTextSize ] = useState(14);
+  const [ sectionSelection, setSectionSelection ] = useState<String>()
 
   const handleAddSection = (newSection: Section) => {
     setSections([...sections, newSection]);
     setDisplayCreateSection(false);
+  }
+
+  const handleChangeTextSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setTextSize(Number(e.target.value));
+  };
+
+  const handleSectionSelection = (section: Section) => {
+    setSectionSelection(section.name);
   }
 
   return (
@@ -27,26 +38,34 @@ const JournalPage: React.FC = () => {
       height: '100vh',
       padding: '20px',
       boxSizing: 'border-box'
+    }}>
+
+    <div style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      width: '90%',
+      marginBottom: '20px'
+    }}>
+
+      <button style={{
+        backgroundColor: "#21e4e6", 
+        color: "black",
+        padding: '10px 15px',
+        borderRadius: '5px',
+        border: 'none'
       }}>
+        Return to Planner
+      </button>
 
-       <div style={{
+      <div style={{
         display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        width: '90%',
-        marginBottom: '20px'
-       }}>
-
-        <button style={{
-          backgroundColor: "#21e4e6", 
-          color: "black",
-          padding: '10px, 15px',
-          borderRadius: '5px',
-          border: 'none'
-        }}>
-          Return to Planner
-        </button>
-          
+        flexDirection: 'column',
+        alignItems: 'flex-end',
+        gap: '10px',
+        width: '100%'
+      }}>
+        
         <div style={{ 
           display: 'flex', 
           justifyContent: 'center', 
@@ -56,7 +75,6 @@ const JournalPage: React.FC = () => {
           padding: '10px 20px',
           width: "40%"
         }}>
-
           <h1 style={{ 
             fontSize: '20px',
             fontWeight: 'normal',
@@ -65,7 +83,31 @@ const JournalPage: React.FC = () => {
             Journal Entry
           </h1>
         </div>
+
+        <div style={{
+          display: 'flex',
+          justifyContent: 'flex-start',
+          backgroundColor: '#d8d8d8',
+          borderRadius: '20px',
+          padding: '10px 20px',
+          width: '80%'
+        }}>
+          <h3 style={{
+            fontSize: '16px',
+            fontWeight: 'normal',
+            margin: 0,
+          }}>
+            Notes Text Size: 
+          </h3>
+          <select value={textSize} onChange={handleChangeTextSize}>
+            <option value={12}>12</option>
+            <option value={14}>14</option>
+            <option value={16}>16</option>
+            <option value={18}>18</option>
+          </select>
+        </div>
       </div>
+    </div>
 
       <div style={{
         display: 'flex',
@@ -119,7 +161,8 @@ const JournalPage: React.FC = () => {
             color: 'black',
             padding: '10px',
             borderRadius: '5px',
-            border: 'none'
+            border: 'none',
+            width: '20%',
           }}
           onClick={() => setDisplayCreateSection(!displayCreateSection)}
           >
@@ -145,11 +188,17 @@ const JournalPage: React.FC = () => {
                     borderRadius: '5px',
                     textAlign: 'center',
                   }}
+                  onClick={() => handleSectionSelection(section)}
                 >
                   {section.name}
                   </div>
               ))}
             </div>
+          </div>
+          <div style={{
+            fontSize: textSize
+          }}>
+            {sectionSelection}
           </div>
         </div>
       </div>
