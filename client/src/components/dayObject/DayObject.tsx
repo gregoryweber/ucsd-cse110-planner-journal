@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { DayObjectContext } from "./DayObjectContext";
+import './DayObjectStyle.css';
 
 export type Task = {
     id: number;
@@ -43,7 +44,56 @@ const DayObject = ({currentDate}: DayObjectProps) => {
                 name: "Task 2",
                 start: "9:00 AM",
                 end: "10:00 AM"
+            },
+            {
+                id: 3,
+                name: "Task 3",
+                start: "10:00 AM",
+                end: "11:00 AM"
+            },
+            {
+                id: 4,
+                name: "Task 4",
+                start: "11:00 AM",
+                end: "12:00 PM"
+            },
+            {
+                id: 5,
+                name: "Task 5",
+                start: "12:00 PM",
+                end: "1:00 PM"
+            },
+            {
+                id: 6,
+                name: "Task 6",
+                start: "1:00 PM",
+                end: "2:00 PM"
+            },
+            {
+                id: 7,
+                name: "Task 7",
+                start: "2:00 PM",
+                end: "3:00 PM"
+            },
+            {
+                id: 8,
+                name: "Task 8",
+                start: "3:00 PM",
+                end: "4:00 PM"
+            },
+            {
+                id: 9,
+                name: "Task 9",
+                start: "4:00 PM",
+                end: "5:00 PM"
+            },
+            {
+                id: 10,
+                name: "Task 10",
+                start: "5:00 PM",
+                end: "6:00 PM"
             }
+
         ]);
     }
 
