@@ -149,9 +149,6 @@ const JournalPage: React.FC = () => {
                   {section.name}
                   </div>
               ))}
-
-            {/* This div holds the different sections, assign later */}
-
             </div>
           </div>
         </div>
