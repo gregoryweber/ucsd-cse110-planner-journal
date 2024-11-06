@@ -1,10 +1,9 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import TaskMenu from "./Components/TaskMenu/TaskMenu";
 
 function App() {
-  return <TaskMenu />;
+  return <div>Hello World!</div>;
 }
 
 export default App;
