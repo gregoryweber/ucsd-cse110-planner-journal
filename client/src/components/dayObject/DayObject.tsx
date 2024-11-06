@@ -1,13 +1,6 @@
 import { useContext, useEffect } from "react";
-import { DayObjectContext } from "./DayObjectContext";
+import { DayObjectContext, Task } from "./DayObjectContext";
 import './DayObjectStyle.css';
-
-export type Task = {
-    id: number;
-    name: string;
-    start: string;
-    end: string;
-}
 
 interface DayObjectProps {
     currentDate: Date;
