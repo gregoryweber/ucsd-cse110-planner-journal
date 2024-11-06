@@ -1,5 +1,5 @@
 import React from 'react';
-import ReminderPopup from './ReminderPopup';
+import ReminderPopup from './tests/Components/ReminderPopup';
 
 const App: React.FC = () => {
   const resetReminder = () => {
