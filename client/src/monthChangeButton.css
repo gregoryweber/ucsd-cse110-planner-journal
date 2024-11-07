@@ -1,20 +1,23 @@
 .arrow-container {
     display: flex;
-    gap: 10px;
+    gap: 510px;
     position: relative;
+    offset-position: 10px;
+    margin-inline: 20.8%;
+    
 }
 
 .month 
 {
-    width: 200px;
-    height: 60px;
+    width: 500px;
+    height: 100px;
     font-size: 18pt;
     border: none;
     border-radius: 10px;
     background-color: #D9D9D9;
-    display: inline-block;
-    text-align: center;
    
+    margin-inline: 25%;
+    text-align: center;
     
 }
 
@@ -27,6 +30,7 @@
     cursor: pointer;
     position: relative;
     transition: background-color 0.3s;
+    
 }
 
 .arrow-button:hover {
@@ -46,6 +50,7 @@
 .right-arrow .arrow {
     border-width: 10px 0 10px 15px;
     border-color: transparent transparent transparent white;
+    
 }
 
 
