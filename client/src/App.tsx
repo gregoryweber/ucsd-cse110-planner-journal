@@ -1,19 +1,21 @@
 // src/App.tsx
 import React, { useState } from "react";
-import Login from "./Components/LoginSignUpPage/Login";
-import SignUp from "./Components/LoginSignUpPage/SignUp";
+import Login from "./components/LoginSignUpPage/Login";
+import SignUp from "./components/LoginSignUpPage/SignUp";
+import JournalPage from "./components/Journal-Page";
 
 const App: React.FC = () => {
   const [showSignUp, setShowSignUp] = useState(false);
 
   return (
-    <div className="center-container">
-      {showSignUp ? (
-        <SignUp goToLogin={() => setShowSignUp(false)} />
-      ) : (
-        <Login goToSignUp={() => setShowSignUp(true)} />
-      )}
-    </div>
+    <JournalPage />
+    // <div className="center-container">
+    //   {showSignUp ? (
+    //     <SignUp goToLogin={() => setShowSignUp(false)} />
+    //   ) : (
+    //     <Login goToSignUp={() => setShowSignUp(true)} />
+    //   )}
+    // </div>
   );
 };
 
