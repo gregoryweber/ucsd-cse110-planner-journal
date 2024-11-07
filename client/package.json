@@ -10,6 +10,7 @@
     "@types/node": "^16.18.116",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@uiw/react-color": "^2.3.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "^3.0.1",
@@ -21,7 +22,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-    
   },
   "eslintConfig": {
     "extends": [
