@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from "react";
 import CreateSection from "./Create-Section" 
+import { DayObjectContext } from '../DayObject/DayObjectContext';
 
 interface Section {
   name: string;
@@ -8,6 +9,8 @@ interface Section {
 }
 
 const JournalPage: React.FC = () => {
+
+  const context = useContext(DayObjectContext);
 
   let [ sections, setSections ] = useState<Section[]>([]);
   const [ displayCreateSection, setDisplayCreateSection ] = useState(false);

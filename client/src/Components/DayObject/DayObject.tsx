@@ -1,6 +1,9 @@
 import { useContext, useEffect } from "react";
-import { DayObjectContext, Task } from "./DayObjectContext";
+import { DayObjectContext} from "./DayObjectContext";
 import './DayObjectStyle.css';
+import TaskMenu from "../TaskMenu/TaskMenu";
+import { Task } from "../../Types/TaskType";
+import JournalPage from "../JournalEntry/Journal-Page";
 
 interface DayObjectProps {
     currentDate: Date;
@@ -111,7 +114,7 @@ export default DayObject;
 //Create a button component that will be used to add a task to DayObject
 const AddTaskButton = () => {
     const handleClick = () => {
-        //<CreateTaskForm/>
+        <TaskMenu/>
     };
 
     return (
@@ -124,7 +127,7 @@ const AddTaskButton = () => {
 //Create a button component that will be used to add a journal entry to DayObject
 const JournalEntryButton = () => {
     const handleClick = () => {
-        //<Journal/>
+        <JournalPage/>
     };
 
     return (

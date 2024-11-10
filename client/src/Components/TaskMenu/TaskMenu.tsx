@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./TaskMenu.css";
+import { Task } from "../../Types/TaskType";
+import { DayObjectContext } from "../DayObject/DayObjectContext";
 
 const TaskMenu: React.FC = () => {
+
+  const context = useContext(DayObjectContext);
+
   const [taskName, setTaskName] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -10,7 +15,13 @@ const TaskMenu: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
+    
+    context.setTasks([...context.tasks, {
+      id: context.tasks.length + 1,
+      name: taskName,
+      start: startTime,
+      end: endTime
+    }]);
   };
 
   return (

@@ -1,11 +1,5 @@
 import React from "react";
-
-export type Task = {
-    id: number;
-    name: string;
-    start: string;
-    end: string;
-}
+import { Task } from "../../Types/TaskType";
 
 //Create a context Type for the DayObject component
 interface DayObjectContextType {
