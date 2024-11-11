@@ -1,27 +1,42 @@
 import React, { useContext, useState } from "react";
 import "./TaskMenu.css";
+import { TaskMenuContext } from "./TaskMenuContext";
 import { Task } from "../../Types/TaskType";
-import { DayObjectContext } from "../DayObject/DayObjectContext";
 
 const TaskMenu: React.FC = () => {
 
-  const context = useContext(DayObjectContext);
+  const taskMenuContext = useContext(TaskMenuContext);
 
   const [taskName, setTaskName] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [reminderTime, setReminderTime] = useState("");
   const [isReminder, setIsReminder] = useState(false);
-
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    context.setTasks([...context.tasks, {
-      id: context.tasks.length + 1,
-      name: taskName,
-      start: startTime,
-      end: endTime
-    }]);
+
+    const newTask: Task = { 
+        id: Math.floor(Math.random() * 1000),
+        name: taskName,
+        start: convertTo12HourFormat(startTime),
+        end: convertTo12HourFormat(endTime)
+    };
+
+    if (taskMenuContext.currentDate) {
+      taskMenuContext.addTask(taskMenuContext.currentDate, newTask);
+    } else {
+      console.error("Current date is null");
+    }
+
+    setTaskName("");
+    setStartTime("");
+    setEndTime("");
+    setReminderTime("");
+    setIsReminder(false);
+
+    taskMenuContext.setCurrentDate(null);
+    taskMenuContext.setIsOpen(false);
   };
 
   return (
@@ -81,3 +96,22 @@ const TaskMenu: React.FC = () => {
 };
 
 export default TaskMenu;
+
+//Convert 24-hour time to 12-hour time
+const convertTo12HourFormat = (time: string) => {
+    const [hours, minutes] = time.split(":").map(Number);
+    let period = "AM";
+    let convertedHours = hours;
+
+    if (hours === 0) {
+        convertedHours = 12; // 00:xx should be 12:xx AM
+    } else if (hours === 12) {
+        period = "PM"; // 12:xx should be 12:xx PM
+    } else if (hours > 12) {
+        convertedHours = hours - 12; // Convert to PM
+        period = "PM";
+    }
+
+    // Format hours and minutes to ensure two digits for minutes and hours
+    return `${convertedHours}:${minutes.toString().padStart(2, "0")} ${period}`;
+};
