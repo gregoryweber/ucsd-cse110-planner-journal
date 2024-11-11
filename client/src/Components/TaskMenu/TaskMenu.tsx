@@ -16,8 +16,13 @@ const TaskMenu: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!taskMenuContext.currentDate) {
+        console.error("Current date is null");
+        return;
+    }
+
     const newTask: Task = { 
-        id: Math.floor(Math.random() * 1000),
+        id: taskMenuContext.tasks[taskMenuContext.currentDate.toISOString().split('T')[0]]?.length + 1 || 1,
         name: taskName,
         start: convertTo12HourFormat(startTime),
         end: convertTo12HourFormat(endTime)
@@ -47,6 +52,7 @@ const TaskMenu: React.FC = () => {
         <input
           className="task-menu-input"
           type="text"
+          data-testid="task-name-input"  
           value={taskName}
           onChange={(e) => setTaskName(e.target.value)}
         />
@@ -55,6 +61,7 @@ const TaskMenu: React.FC = () => {
         <input
           className="task-menu-input"
           type="time"
+          data-testid="task-start-time-input"
           value={startTime}
           onChange={(e) => setStartTime(e.target.value)}
         />
@@ -63,6 +70,7 @@ const TaskMenu: React.FC = () => {
         <input
           className="task-menu-input"
           type="time"
+          data-testid="task-end-time-input"
           value={endTime}
           onChange={(e) => setEndTime(e.target.value)}
         />
@@ -87,7 +95,7 @@ const TaskMenu: React.FC = () => {
           </div>
         </div>
 
-        <button type="submit" className="submit-button">
+        <button type="submit" className="submit-button" data-testid="task-submit-button">
           Submit
         </button>
       </form>

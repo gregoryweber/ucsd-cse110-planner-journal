@@ -14,7 +14,7 @@ const DayObject = ({currentDate}: DayObjectProps) => {
     const taskMenuContext = useContext(TaskMenuContext);
     const dateKey = currentDate.toISOString().split('T')[0];
     const dayTasks = taskMenuContext.tasks[dateKey] || [];
-
+    
     return (
         <div>
             <div className="dayObject">
@@ -111,7 +111,8 @@ const TaskItem = ({task, currentDate}: TaskItemProps) => {
         <div>
             <div className="taskItem">
                 <div className="taskItem__name">{task.name}</div>
-                <button className="taskItem__deleteButton" onClick={() => removeTask(currentDate, task.id)}>x</button>
+                <button className="taskItem__deleteButton" onClick={() => removeTask(currentDate, task.id)} 
+                        data-testid={`remove-button-task-${task.id}`}>x</button>
                 <div className="taskItem__description">{task.start} - {task.end}</div>
             </div>
         </div>
