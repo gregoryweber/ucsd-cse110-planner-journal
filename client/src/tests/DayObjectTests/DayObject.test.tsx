@@ -1,11 +1,11 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
-import DayObject from "../Components/DayObject/DayObject";
+import DayObject from "../../Components/DayObject/DayObject";
 import '@testing-library/jest-dom';
-import { TaskMenuContext } from "../Components/TaskMenu/TaskMenuContext";
+import { TaskMenuContext } from "../../Components/TaskMenu/TaskMenuContext";
 import { useCallback, useState } from "react";
-import { JournalPageContext } from "../Components/JournalPage/JournalPageContext";
-import TaskMenu from "../Components/TaskMenu/TaskMenu";
-import { Task } from "../Types/TaskType";
+import { JournalPageContext } from "../../Components/JournalPage/JournalPageContext";
+import TaskMenu from "../../Components/TaskMenu/TaskMenu";
+import { Task } from "../../Types/TaskType";
 
 describe("DayObject HTML", () => {
   test("Different Dates", () => {
