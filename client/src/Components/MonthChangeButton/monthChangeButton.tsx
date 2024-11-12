@@ -2,33 +2,28 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 //import '../monthChangeButton.css';
 
-import '../../monthChangeButton.css'
+import './monthChangeButton.css'
 
 function MonthChangeButton()
 {
    
   return(
    
-        
+   <div className="Table" id ='MonthChange'>
    
-   <div id ='MonthChange'>
-    
+   <div className="Heading">
+       <div className="Cell">
+       <div className="arrow-container" >
+        
+        <button className="arrow-button left-arrow" >
+        <span className="arrow" />
+        </button>
+        </div>
 
-      <div className="arrow-container" >
-        
-         <button className="arrow-button left-arrow">
-         <span className="arrow" />
-         </button>
-         
-         
-      <button className="arrow-button right-arrow">
-         <span className="arrow"/>
-      </button>
-     
-      
-      </div>
-   
-   <div className="month">
+       </div>
+       <div className="Cell">
+
+       <div className="month">
          <p>November 2024</p>
          <div className="dropdown-calendar">
          <label htmlFor="month">Select Month: </label>
@@ -48,7 +43,7 @@ function MonthChangeButton()
          <option value={11}>Dec</option>
          </select>
       {/* Dropdown selection for years */}
-         <label htmlFor="year">Select Year: </label>
+         <label htmlFor="year">  Select Year: </label>
          <select id="year">
          <option value={2024}>2024</option>
          <option value={2023}>2023</option>
@@ -65,9 +60,21 @@ function MonthChangeButton()
       </div>
       </div>
 
+       </div>
+
+       <div className="Cell">
+       <div className="arrow-container" > 
+      <button className="arrow-button right-arrow">
+         <span className="arrow"/>
+      </button>
+      </div>
+
+       </div>
    </div>
-
-
+   
+</div>   
+   
+   
 
 
   );
