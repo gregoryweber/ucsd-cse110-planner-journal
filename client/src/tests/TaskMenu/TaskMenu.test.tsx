@@ -5,11 +5,9 @@ import { TaskMenuContext } from "../../Components/TaskMenu/TaskMenuContext";
 import { Task } from "../../Types/TaskType";
 
 describe("TaskMenu Component", () => {
-  beforeEach(() => {
-    render(<TaskMenu />);
-  });
-
+  
   test("renders all input fields and submit button", () => {
+    render(<TaskMenu />);
     // Check for Task Name input
     const taskNameInput = screen.getByLabelText("Task Name");
     expect(taskNameInput).toBeInTheDocument();
