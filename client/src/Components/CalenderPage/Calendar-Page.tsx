@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const CalendarPage: React.FC = () => {
+interface CalendarPageProps {
+    onLogout: () => void; // Accept the onLogout prop
+}
+
+const CalendarPage: React.FC<CalendarPageProps> = ({ onLogout }) => {
     const dayStyle = {
         display: 'flex',
         border:'1px solid black',
         padding: '5px',
         justifyContent: 'center',
         margin: '0',
+        gap: '0',
+        width: 'auto',
         backgroundColor: '#78A1ED',
         fontWeight: 'bold'
     };
@@ -14,7 +21,7 @@ const CalendarPage: React.FC = () => {
         display: 'flex',
         margin: '0',
         gap: '0',
-        width: '100%',
+        width: 'auto',
         border:'1px solid black',
         backgroundColor: '#D9D9D9'
     };
@@ -30,15 +37,16 @@ const CalendarPage: React.FC = () => {
             gridTemplateRows: 'auto',
             gridTemplateColumns: '5% 95%'
         }}>
-            <button style={{
+            <button 
+                onClick={onLogout}
+                style={{
                 marginLeft: '25%',
                 marginTop: '20%',
-                marginBottom: '20%',
+                paddingTop: '7%',
                 width: '100px',
                 height: '25px',
                 borderRadius: '10px',
                 backgroundColor: '#FE7D7D',
-                border: '0',
                 boxShadow: '0px 3px 3px #888888'
             }}>
                 Logout
@@ -60,27 +68,34 @@ const CalendarPage: React.FC = () => {
                 <button style={{
                     border: '0',
                     height: '32px',
-                    marginTop: '19px',
+                    marginTop: '16px',
                     backgroundColor: '#2BE0E9',
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    width: '3%',
+                    borderRadius: '0'
                 }}>{'<'}</button>
 
-                <h2 style={{
+                <h1 style={{
                     textAlign: 'center',
                     backgroundColor: '#D9D9D9',
+                    color: 'black',
                     fontWeight: 'normal',
+                    fontSize: '24px',
                     paddingLeft: '12%',
-                    paddingRight: '12%'
+                    paddingRight: '12%',
+                    width: '16%'
                 }}>
                     MONTH YEAR
-                </h2>
+                </h1>
 
                 <button style={{
                     border: '0',
                     height: '32px',
-                    marginTop: '19px',
+                    marginTop: '16px',
                     backgroundColor: '#2BE0E9',
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    width: '3%',
+                    borderRadius: '0'
                 }}>
                     {'>'}
                 </button>
@@ -146,8 +161,8 @@ const CalendarPage: React.FC = () => {
 
                 <input type='checkbox'style={{
                     display: 'flex',
-                    marginLeft: '84%',
-                    marginBottom: '200px'
+                    marginLeft: '37%',
+                    marginBottom: '1px'
                 }}/>
 
                 <button style={{
@@ -166,7 +181,7 @@ const CalendarPage: React.FC = () => {
 
             <div style={{
                 display: 'grid',
-                gridTemplateRows: 'auto repeat(5, 6.9rem)',
+                gridTemplateRows: '2rem repeat(5, 6.9rem)',
                 gridTemplateColumns: 'repeat(7, 1fr)',
                 marginLeft: '1rem',
                 marginRight: '3rem'
