@@ -17,24 +17,33 @@ const TaskMenu: React.FC = () => {
     <div className="task-menu-container">
       <h1 className="task-menu-title">Create Task/Event</h1>
       <form className="task-menu-form" onSubmit={handleSubmit}>
-        <label className="task-menu-label">Task Name</label>
+        <label className="task-menu-label" htmlFor="name">
+          Task Name
+        </label>
         <input
+          id="name"
           className="task-menu-input"
           type="text"
           value={taskName}
           onChange={(e) => setTaskName(e.target.value)}
         />
 
-        <label className="task-menu-label">Task Start Time</label>
+        <label className="task-menu-label" htmlFor="start">
+          Task Start Time
+        </label>
         <input
+          id="start"
           className="task-menu-input"
           type="time"
           value={startTime}
           onChange={(e) => setStartTime(e.target.value)}
         />
 
-        <label className="task-menu-label">Task End Time</label>
+        <label className="task-menu-label" htmlFor="end">
+          Task End Time
+        </label>
         <input
+          id="end"
           className="task-menu-input"
           type="time"
           value={endTime}
@@ -42,8 +51,11 @@ const TaskMenu: React.FC = () => {
         />
 
         <div className="reminder-section">
-          <label className="task-menu-label">Reminder Time</label>
+          <label className="task-menu-label" htmlFor="reminder">
+            Reminder Time
+          </label>
           <select
+            id="reminder"
             className="task-menu-select"
             value={reminderTime}
             onChange={(e) => setReminderTime(e.target.value)}>
