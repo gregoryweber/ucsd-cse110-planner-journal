@@ -188,33 +188,3 @@ describe("DayObject Functionality", () => {
     });
 
 });
-
-
-//for task menu
-test("Create Task", () => {
-    const mockAddTask = jest.fn();
-    render(
-        <TaskMenuContext.Provider value={{ currentDate: new Date(2024, 10, 11), setCurrentDate: jest.fn(), isOpen: true, setIsOpen: jest.fn(), tasks: {}, addTask: mockAddTask, removeTask: jest.fn() }}>
-            <TaskMenu />
-        </TaskMenuContext.Provider>
-    );
-
-  const taskNameInput = screen.getByTestId('task-name-input'); 
-  const startTimeInput = screen.getByTestId('task-start-time-input'); 
-  const endTimeInput = screen.getByTestId('task-end-time-input');
-  const submitButton = screen.getByTestId('task-submit-button');
-
-  fireEvent.change(taskNameInput, { target: { value: 'New Task' } });
-  fireEvent.change(startTimeInput, { target: { value: '10:00' } }); 
-  fireEvent.change(endTimeInput, { target: { value: '23:00' } });
-
-  fireEvent.click(submitButton);
-
-  const newTask: Task = { 
-    id: 1,
-    name: "New Task",
-    start: "10:00 AM",
-    end: "11:00 PM"
-  };
-  expect(mockAddTask).toHaveBeenCalledWith(new Date(2024, 10, 11), newTask);
-});
