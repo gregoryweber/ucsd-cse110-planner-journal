@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Login from './Login';
+import Login from '../../Components/LoginSignUpPage/Login';
 
 describe('Login Component', () => {
   test('renders the login form with username and password inputs', () => {
