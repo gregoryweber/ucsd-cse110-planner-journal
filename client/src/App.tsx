@@ -1,21 +1,15 @@
 // src/App.tsx
-import React, { useState } from "react";
-import Login from "./Components/LoginSignUpPage/Login";
-import SignUp from "./Components/LoginSignUpPage/SignUp";
+import React from "react";
+import ResetReminderButton from "./Components/ReminderPopup/ResetReminderButton";
+import ReminderPopup from "./Components/ReminderPopup/ReminderPopup";
 
 const App: React.FC = () => {
-  const [showSignUp, setShowSignUp] = useState(false);
-
   return (
-    <div className="center-container">
-      {showSignUp ? (
-        <SignUp goToLogin={() => setShowSignUp(false)} />
-      ) : (
-        <Login goToSignUp={() => setShowSignUp(true)} />
-      )}
+    <div>
+      <ReminderPopup />
+      <ResetReminderButton />
     </div>
   );
 };
-
 
 export default App;
