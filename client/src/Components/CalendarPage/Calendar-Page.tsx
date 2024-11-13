@@ -84,7 +84,8 @@ const CalendarPage: React.FC = () => {
                     gridTemplateRows: 'auto repeat(5, 6.9rem)',
                     gridTemplateColumns: 'repeat(7, 1fr)',
                     marginLeft: '1rem',
-                    marginRight: '3rem'
+                    marginRight: '3rem',
+                    height: "600px",
                 }}>
                     <p style={dayStyle}>Sunday</p>
                     <p style={dayStyle}>Monday</p>
