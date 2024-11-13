@@ -1,11 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// src/App.tsx
+import React, { useState } from "react";
+import Login from "./Components/LoginSignUpPage/Login";
+import SignUp from "./Components/LoginSignUpPage/SignUp";
 
-function App() {
+const App: React.FC = () => {
+  const [showSignUp, setShowSignUp] = useState(false);
+
   return (
-    null
+    <div className="center-container">
+      {showSignUp ? (
+        <SignUp goToLogin={() => setShowSignUp(false)} />
+      ) : (
+        <Login goToSignUp={() => setShowSignUp(true)} />
+      )}
+    </div>
   );
-}
+};
+
 
 export default App;
