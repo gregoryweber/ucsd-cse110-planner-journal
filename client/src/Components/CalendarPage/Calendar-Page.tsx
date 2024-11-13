@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import DayObject from '../DayObject/DayObject';
+import { TaskMenuContext } from '../TaskMenu/TaskMenuContext';
+import TaskMenu from '../TaskMenu/TaskMenu';
 
 const CalendarPage: React.FC = () => {
+    const taskMenuContext = useContext(TaskMenuContext);
+
     const dayStyle = {
         display: 'flex',
         border:'1px solid black',
@@ -15,6 +20,7 @@ const CalendarPage: React.FC = () => {
         margin: '0',
         gap: '0',
         width: '100%',
+        height: '100%',
         border:'1px solid black',
         backgroundColor: '#D9D9D9'
     };
@@ -24,8 +30,7 @@ const CalendarPage: React.FC = () => {
     };
     
     return (
-        <>
-        
+        <>      
         <h1 style={{
             textAlign: 'center',
             backgroundColor: '#D9D9D9',
@@ -70,70 +75,8 @@ const CalendarPage: React.FC = () => {
                 gridTemplateRows: '1fr',
                 gridTemplateColumns: '15% 85%'
             }}>
-                <div style={{
-                    backgroundColor: '#D9D9D9',
-                    borderRadius: '10px',
-                    marginLeft: '20px',
-                    marginBottom: '10rem'
-                }}>
-                    <h3 style={{
-                        textAlign: 'center'
-                    }}>
-                        Create Task/Event
-                    </h3>
-
-                    <input style={{
-                        display: 'block',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                        width: '77%',
-                        marginBottom: '10px'
-                    }}
-                        name="taskName"
-                        placeholder={'Task Name'} />
-
-                    <input style={{
-                        display: 'block',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                        width: '77%',
-                        marginBottom: '10px'
-                    }}
-                        name="taskStartTime"
-                        placeholder={'Task Start Time'} />
-
-                    <input style={{
-                        display: 'block',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                        width: '77%',
-                        marginBottom: '10px'
-                    }}
-                        name="taskEndTime"
-                        placeholder={'Task End Time'} />
-
-                    <select style={{
-                        display: 'block',
-                        marginLeft: 'auto',
-                        marginRight: 'auto',
-                        width: '81%',
-                        marginBottom: '10px'
-                    }}>
-                        <option value="test">Select Time</option>
-                    </select>
-
-                    <input type='checkbox'style={{
-                        display: 'flex',
-                        marginLeft: '84%',
-                        marginBottom: '200px'
-                    }}/>
-
-                    <button style={{
-                        display: 'block',
-                        margin: 'auto'
-                    }}>
-                        Submit
-                    </button>
+                <div>
+                    {taskMenuContext.isOpen ? <TaskMenu/> : null}
                 </div>
 
                 <div style={{
@@ -141,7 +84,8 @@ const CalendarPage: React.FC = () => {
                     gridTemplateRows: 'auto repeat(5, 6.9rem)',
                     gridTemplateColumns: 'repeat(7, 1fr)',
                     marginLeft: '1rem',
-                    marginRight: '3rem'
+                    marginRight: '3rem',
+                    height: "600px",
                 }}>
                     <p style={dayStyle}>Sunday</p>
                     <p style={dayStyle}>Monday</p>
@@ -152,7 +96,9 @@ const CalendarPage: React.FC = () => {
                     <p style={dayStyle}>Saturday</p>
                     {/* where all the day objects go */}
                     {/* everything below to be replaced */}
-                    <div style={tempBoxes}>1</div>
+                    <div>
+                       <DayObject currentDate={new Date()}/>
+                    </div>
                     <div style={tempBoxes}>2</div>
                     <div style={tempBoxes}>3</div>
                     <div style={tempBoxes}>4</div>
@@ -188,7 +134,7 @@ const CalendarPage: React.FC = () => {
                     <div style={tempBoxes}></div>
                     <div style={tempBoxes}></div>
                 </div>
-            </div>
+        </div>
         </>
     );
 };
