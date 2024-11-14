@@ -1,28 +1,23 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Login from './Components/LoginSignUpPage/Login';
-import SignUp from './Components/LoginSignUpPage/SignUp';
-import MonthChangeButton from './Components/MonthChangeButton/monthChangeButton';
+import React, { useEffect, useState } from "react";
+import Login from "./Components/LoginSignUpPage/Login";
+import SignUp from "./Components/LoginSignUpPage/SignUp";
+import DisplayUI from "./Components/DisplayUI/DisplayUI";
 
+const App: React.FC = () => {
+  // const [showSignUp, setShowSignUp] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSigningUp, setIsSigningUp] = useState(false);
 
-const App = () =>  {
-// src/App.tsx
-  const App: React.FC = () => {
-    const [showSignUp, setShowSignUp] = useState(false);
-
-    return (
-      <div className="center-container">
-        {showSignUp ? (
-          <SignUp goToLogin={() => setShowSignUp(false)} />
-        ) : (
-          <Login goToSignUp={() => setShowSignUp(true)} />
-        )}
-      </div>
-    );
+  const handleLogin = () => {
+    setIsLoggedIn(true);
   };
 
-}
+  return (
+    <div>
+        <DisplayUI/>
+    </div>
+  );
+};
 
 
 export default App;
