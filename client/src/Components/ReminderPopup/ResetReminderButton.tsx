@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ResetReminderButton.css';
+import './ResetReminderButton.css'
 
 const ResetReminderButton: React.FC = () => {
   const [muted, setMuted] = useState(false);
