@@ -1,3 +1,4 @@
+// src/App.tsx
 import React, { useEffect, useState } from "react";
 import Login from "./Components/LoginSignUpPage/Login";
 import SignUp from "./Components/LoginSignUpPage/SignUp";
