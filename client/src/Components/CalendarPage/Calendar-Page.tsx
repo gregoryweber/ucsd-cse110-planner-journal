@@ -12,6 +12,8 @@ const CalendarPage: React.FC = () => {
         padding: '5px',
         justifyContent: 'center',
         margin: '0',
+        gap: '0',
+        width: 'auto',
         backgroundColor: '#78A1ED',
         fontWeight: 'bold'
     };
@@ -41,32 +43,51 @@ const CalendarPage: React.FC = () => {
             fontStyle: 'italic',
             marginBottom: '0'
         }}>
-            PLANNER
-        </h1>
-        
-        <div style={flexContainer}>
+            {/* <button 
+                onClick={onLogout}
+                style={{
+                marginLeft: '25%',
+                marginTop: '20%',
+                paddingTop: '7%',
+                width: '100px',
+                height: '25px',
+                borderRadius: '10px',
+                backgroundColor: '#FE7D7D',
+                boxShadow: '0px 3px 3px #888888'
+            }}>
+                Logout
+            </button> */}
+                PLANNER
+            </h1>
+            <div></div>
+            <div style={flexContainer}>
                 <button style={{
                     border: '0',
                     height: '32px',
-                    marginTop: '19px',
+                    marginTop: '16px',
                     backgroundColor: '#2BE0E9',
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    width: '3%',
+                    borderRadius: '0'
                 }}>{'<'}</button>
 
-                <h2 style={{
+                <h1 style={{
                     textAlign: 'center',
                     backgroundColor: '#D9D9D9',
+                    color: 'black',
                     fontWeight: 'normal',
+                    fontSize: '24px',
                     paddingLeft: '12%',
-                    paddingRight: '12%'
+                    paddingRight: '12%',
+                    width: '16%'
                 }}>
                     MONTH YEAR
-                </h2>
+                </h1>
 
                 <button style={{
                     border: '0',
                     height: '32px',
-                    marginTop: '19px',
+                    marginTop: '16px',
                     backgroundColor: '#2BE0E9',
                     fontWeight: 'bold'
                 }}>{'>'}</button>
