@@ -8,33 +8,21 @@ import MonthChangeButton from './Components/MonthChangeButton/monthChangeButton'
 
 const App = () =>  {
 // src/App.tsx
-const App: React.FC = () => {
-  const [showSignUp, setShowSignUp] = useState(false);
+  const App: React.FC = () => {
+    const [showSignUp, setShowSignUp] = useState(false);
 
-  return (
-    <div className="center-container">
-      {showSignUp ? (
-        <SignUp goToLogin={() => setShowSignUp(false)} />
-      ) : (
-        <Login goToSignUp={() => setShowSignUp(true)} />
-      )}
-    </div>
-  );
-};
+    return (
+      <div className="center-container">
+        {showSignUp ? (
+          <SignUp goToLogin={() => setShowSignUp(false)} />
+        ) : (
+          <Login goToSignUp={() => setShowSignUp(true)} />
+        )}
+      </div>
+    );
+  };
 
 }
-export default App;
-//function App() {
-  //return (
-    //null
-  //);
-//}
 
-//const App = () => {
-  //return (
- 
-      //<div>
-     //<MonthChangeButton/>
-    //</div>
-  //);
-// };
+
+export default App;

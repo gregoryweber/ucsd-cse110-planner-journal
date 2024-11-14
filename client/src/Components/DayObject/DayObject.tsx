@@ -10,7 +10,7 @@ interface DayObjectProps {
 const DayObject = ({currentDate}: DayObjectProps) => {
 
     const context = useContext(DayObjectContext);
-
+    
     context.setCurrentDate(currentDate);
 
     useEffect(() => {
