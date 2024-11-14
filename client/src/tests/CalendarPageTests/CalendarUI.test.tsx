@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import CalendarPage from './Calendar-Page';
+import CalendarPage from "../../Components/CalendarPage/Calendar-Page";
 
 // test CalendarPage renders title and days of the week
 test('renders CalendarPage component', () => {
     render(
-        <CalendarPage onLogout={() => {}} />
+        <CalendarPage />
     );
   
     expect(screen.getByText(/PLANNER/i)).toBeInTheDocument();
@@ -17,16 +17,4 @@ test('renders CalendarPage component', () => {
     expect(screen.getByText(/Thursday/i)).toBeInTheDocument();
     expect(screen.getByText(/Friday/i)).toBeInTheDocument();
     expect(screen.getByText(/Saturday/i)).toBeInTheDocument();
-});
-
-// test logout button on CalendarPage works
-test('calls onLogout when logout button is clicked', () => {
-const onLogoutMock = jest.fn();
-
-render(
-    <CalendarPage onLogout={onLogoutMock} />
-);
-
-fireEvent.click(screen.getByText(/Logout/i));
-expect(onLogoutMock).toHaveBeenCalled();
 });

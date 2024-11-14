@@ -4,8 +4,6 @@ import '@testing-library/jest-dom';
 import { TaskMenuContext } from "../../Components/TaskMenu/TaskMenuContext";
 import { useCallback, useState } from "react";
 import { JournalPageContext } from "../../Components/JournalPage/JournalPageContext";
-import TaskMenu from "../../Components/TaskMenu/TaskMenu";
-import { Task } from "../../Types/TaskType";
 
 describe("DayObject HTML", () => {
   test("Different Dates", () => {
