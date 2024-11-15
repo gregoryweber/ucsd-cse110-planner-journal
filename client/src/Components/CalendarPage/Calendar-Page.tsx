@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
-import DayObject from '../DayObject/DayObject';
 import { TaskMenuContext } from '../TaskMenu/TaskMenuContext';
 import TaskMenu from '../TaskMenu/TaskMenu';
+import DisplayDayObjects from './DisplayDayObjects';
+import { MonthChangeContext } from '../MonthChangeButton/MonthChangeContext';
 
 const CalendarPage: React.FC = () => {
     const taskMenuContext = useContext(TaskMenuContext);
+    const monthChangeContext = useContext(MonthChangeContext);
 
     const dayStyle = {
         display: 'flex',
@@ -16,15 +18,6 @@ const CalendarPage: React.FC = () => {
         width: 'auto',
         backgroundColor: '#78A1ED',
         fontWeight: 'bold'
-    };
-    const tempBoxes = {
-        display: 'flex',
-        margin: '0',
-        gap: '0',
-        width: '100%',
-        height: '100%',
-        border:'1px solid black',
-        backgroundColor: '#D9D9D9'
     };
     const flexContainer = {
         display: 'flex',
@@ -117,43 +110,7 @@ const CalendarPage: React.FC = () => {
                     <p style={dayStyle}>Saturday</p>
                     {/* where all the day objects go */}
                     {/* everything below to be replaced */}
-                    <div>
-                       <DayObject currentDate={new Date()}/>
-                    </div>
-                    <div style={tempBoxes}>2</div>
-                    <div style={tempBoxes}>3</div>
-                    <div style={tempBoxes}>4</div>
-                    <div style={tempBoxes}>5</div>
-                    <div style={tempBoxes}>6</div>
-                    <div style={tempBoxes}>7</div>
-                    <div style={tempBoxes}>8</div>
-                    <div style={tempBoxes}>9</div>
-                    <div style={tempBoxes}>10</div>
-                    <div style={tempBoxes}>11</div>
-                    <div style={tempBoxes}>12</div>
-                    <div style={tempBoxes}>13</div>
-                    <div style={tempBoxes}>14</div>
-                    <div style={tempBoxes}>15</div>
-                    <div style={tempBoxes}>16</div>
-                    <div style={tempBoxes}>17</div>
-                    <div style={tempBoxes}>18</div>
-                    <div style={tempBoxes}>19</div>
-                    <div style={tempBoxes}>20</div>
-                    <div style={tempBoxes}>21</div>
-                    <div style={tempBoxes}>22</div>
-                    <div style={tempBoxes}>23</div>
-                    <div style={tempBoxes}>24</div>
-                    <div style={tempBoxes}>25</div>
-                    <div style={tempBoxes}>26</div>
-                    <div style={tempBoxes}>27</div>
-                    <div style={tempBoxes}>28</div>
-                    <div style={tempBoxes}>29</div>
-                    <div style={tempBoxes}>30</div>
-                    <div style={tempBoxes}>31</div>
-                    <div style={tempBoxes}></div>
-                    <div style={tempBoxes}></div>
-                    <div style={tempBoxes}></div>
-                    <div style={tempBoxes}></div>
+                    <DisplayDayObjects/>
                 </div>
         </div>
         </>
