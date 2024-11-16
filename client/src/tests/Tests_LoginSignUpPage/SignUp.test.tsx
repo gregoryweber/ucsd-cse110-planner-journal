@@ -6,7 +6,7 @@ import SignUp from '../../Components/LoginSignUpPage/SignUp';
 
 describe('SignUp Component', () => {
   test('renders the sign-up form with username and password inputs', () => {
-    render(<SignUp goToLogin={() => {}} />);
+    render(<SignUp setShowSignUp={() => {}} />);
 
     // Check if "Sign Up" header is present
     expect(screen.getByText('Sign Up')).toBeInTheDocument();
@@ -24,7 +24,7 @@ describe('SignUp Component', () => {
 
   test('calls goToLogin when "Back to Log In" link is clicked', () => {
     const goToLoginMock = jest.fn();
-    render(<SignUp goToLogin={goToLoginMock} />);
+    render(<SignUp setShowSignUp={goToLoginMock} />);
 
     // Click on the "Back to Log In" link
     fireEvent.click(screen.getByText('Back to Log In'));
