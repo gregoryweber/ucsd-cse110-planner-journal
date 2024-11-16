@@ -88,6 +88,13 @@ const TaskMenu: React.FC = () => {
           <label className="task-menu-label" htmlFor="reminder">
             Reminder Time
           </label>
+          <div className="checkbox-icon">
+            <input
+              type="checkbox"
+              checked={isReminder}
+              onChange={() => setIsReminder(!isReminder)}
+            />
+          </div>
           <select
             id="reminder"
             className="task-menu-select"
@@ -98,13 +105,6 @@ const TaskMenu: React.FC = () => {
             <option value="10">10 minutes before</option>
             <option value="30">30 minutes before</option>
           </select>
-          <div className="checkbox-icon">
-            <input
-              type="checkbox"
-              checked={isReminder}
-              onChange={() => setIsReminder(!isReminder)}
-            />
-          </div>
         </div>
 
         <button type="submit" className="submit-button" data-testid="task-submit-button">

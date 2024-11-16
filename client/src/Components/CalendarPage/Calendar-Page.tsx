@@ -29,12 +29,15 @@ const CalendarPage: React.FC = () => {
         <h1 style={{
             textAlign: 'center',
             backgroundColor: '#D9D9D9',
-            marginLeft: '30%',
-            marginRight: '30%',
+            width: '500px', 
+            height: '40px', 
+            margin: '0 auto 16px auto', 
             borderRadius: '10px',
             fontWeight: 'normal',
             fontStyle: 'italic',
-            marginBottom: '0'
+            display: 'flex',
+            alignItems: 'center', 
+            justifyContent: 'center',
         }}>
             {/* <button 
                 onClick={onLogout}
@@ -52,7 +55,6 @@ const CalendarPage: React.FC = () => {
             </button> */}
                 PLANNER
             </h1>
-            <div></div>
             <div style={flexContainer}>
                 <button style={{
                     border: '0',
@@ -60,36 +62,51 @@ const CalendarPage: React.FC = () => {
                     marginTop: '16px',
                     backgroundColor: '#2BE0E9',
                     fontWeight: 'bold',
-                    width: '3%',
-                    borderRadius: '0'
-                }}>{'<'}</button>
+                    width: '32px',
+                    borderRadius: '4px',
+                }}>{'<'}
+                </button>
 
-                <h1 style={{
-                    textAlign: 'center',
-                    backgroundColor: '#D9D9D9',
-                    color: 'black',
-                    fontWeight: 'normal',
-                    fontSize: '24px',
-                    paddingLeft: '12%',
-                    paddingRight: '12%',
-                    width: '16%'
-                }}>
-                    MONTH YEAR
-                </h1>
+            <h1 style={{
+                textAlign: 'center',
+                backgroundColor: '#D9D9D9',
+                color: 'black',
+                fontWeight: 'normal',
+                fontSize: '24px',
+                width: '300px', 
+                height: '32px', 
+                margin: '0 16px',
+                display: 'flex',
+                alignItems: 'center', 
+                justifyContent: 'center',
+            }}>
+                MONTH YEAR
+            </h1>
 
                 <button style={{
                     border: '0',
                     height: '32px',
                     marginTop: '16px',
                     backgroundColor: '#2BE0E9',
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    width: '32px',
+                    borderRadius: '4px',
                 }}>{'>'}</button>
-            </div><div style={{
+            </div>
+            <div style={{
                 display: 'grid',
-                gridTemplateRows: '1fr',
-                gridTemplateColumns: '15% 85%'
+                gridTemplateRows: 'auto repeat(5, 1fr)', // Changed to 1fr for equal sizing
+                gridTemplateColumns: 'repeat(7, 1fr)',
+                marginLeft: '1rem',
+                marginRight: '0rem',
+                height: "calc(100vh - 200px)", // Adjust based on header height
+                gap: '4px', // Add consistent gap between cells
+                minHeight: '600px' // Ensure minimum height
             }}>
-                <div>
+                <div style={{
+                
+                width: '230px',
+            }}>
                     {taskMenuContext.isOpen ? <TaskMenu/> : null}
                 </div>
 
