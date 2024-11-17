@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import DayObject from "../DayObject/DayObject";
 import { MonthChangeContext } from "../MonthChangeButton/MonthChangeContext";
-import { set } from "react-datepicker/dist/date_utils";
 
 const DayObjects = () => {
     const {currentYear, currentMonth, setCurrentMonth, setCurrentYear} = useContext(MonthChangeContext);
@@ -11,7 +10,7 @@ const DayObjects = () => {
     (() => {
         setCurrentMonth(new Date().getMonth());
         setCurrentYear(new Date().getFullYear());
-    }, []);
+    }, [setCurrentMonth, setCurrentYear]);
 
     if (currentYear === null || currentMonth === null) {
         return null;

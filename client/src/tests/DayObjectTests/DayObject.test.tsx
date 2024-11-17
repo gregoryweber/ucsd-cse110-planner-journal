@@ -54,6 +54,7 @@ describe("DayObject HTML", () => {
             isOpen: false,
             setIsOpen: jest.fn(),
             tasks: mockTasks,
+            setTasks: jest.fn(),
             addTask: jest.fn(),
             removeTask: jest.fn(),
         }}>
@@ -114,6 +115,7 @@ describe("DayObject Functionality", () => {
                 isOpen: false,
                 setIsOpen: jest.fn(),
                 tasks,
+                setTasks: jest.fn(),
                 addTask: jest.fn(),
                 removeTask
             };
@@ -173,7 +175,9 @@ describe("DayObject Functionality", () => {
         const mockSetIsOpen = jest.fn();
         const mockSetCurrentDate = jest.fn();
         render(
-            <TaskMenuContext.Provider value={{ currentDate: null, setCurrentDate: mockSetCurrentDate, isOpen: false, setIsOpen: mockSetIsOpen, tasks: {}, addTask: jest.fn(), removeTask: jest.fn() }}>
+            <TaskMenuContext.Provider value={{ currentDate: null, setCurrentDate: mockSetCurrentDate, 
+                    isOpen: false, setIsOpen: mockSetIsOpen, tasks: {}, 
+                    setTasks: jest.fn(), addTask: jest.fn(), removeTask: jest.fn() }}>
                 <DayObject currentDate={new Date(2024, 10, 11)} />
             </TaskMenuContext.Provider>
         );
