@@ -3,6 +3,7 @@ import { TaskMenuContext } from '../TaskMenu/TaskMenuContext';
 import TaskMenu from '../TaskMenu/TaskMenu';
 import DisplayDayObjects from './DisplayDayObjects';
 import { MonthChangeContext } from '../MonthChangeButton/MonthChangeContext';
+import { AccountContext } from '../LoginSignUpPage/AccountContext';
 
 const CalendarPage: React.FC = () => {
     const taskMenuContext = useContext(TaskMenuContext);
@@ -25,7 +26,14 @@ const CalendarPage: React.FC = () => {
     };
     
     return (
-        <>      
+        <>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '2px',
+        }}>
+            <LogoutButton/>
         <h1 style={{
             textAlign: 'center',
             backgroundColor: '#D9D9D9',
@@ -39,22 +47,9 @@ const CalendarPage: React.FC = () => {
             alignItems: 'center', 
             justifyContent: 'center',
         }}>
-            {/* <button 
-                onClick={onLogout}
-                style={{
-                marginLeft: '25%',
-                marginTop: '20%',
-                paddingTop: '7%',
-                width: '100px',
-                height: '25px',
-                borderRadius: '10px',
-                backgroundColor: '#FE7D7D',
-                boxShadow: '0px 3px 3px #888888'
-            }}>
-                Logout
-            </button> */}
                 PLANNER
             </h1>
+        </div>
             <div style={flexContainer}>
                 <button style={{
                     border: '0',
@@ -135,3 +130,40 @@ const CalendarPage: React.FC = () => {
 };
 
 export default CalendarPage;
+
+const LogoutButton = () => {
+    const accountContext = useContext(AccountContext);
+    const taskMenuContext = useContext(TaskMenuContext);
+
+    const onLogout = () => {
+        taskMenuContext.setIsOpen(false);
+        taskMenuContext.setCurrentDate(null);
+        taskMenuContext.setTasks({});
+
+        accountContext.setIsLoggedIn(false);
+        accountContext.setUsername(null);
+        accountContext.setPassword(null);
+    };
+
+    return (
+            <button 
+                onClick={onLogout}
+                style={{
+                    width: '120px',
+                    height: '36px',
+                    backgroundColor: '#78A1ED',
+                    color: 'white',
+                    borderRadius: '6px',
+                    border: '1',
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s',
+                }}
+                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#6691dd'}
+                onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#78A1ED'}
+            >
+                Logout
+            </button>
+    );
+};
