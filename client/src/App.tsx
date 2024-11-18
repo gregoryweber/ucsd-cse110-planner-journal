@@ -1,8 +1,8 @@
 // src/App.tsx
 import React, { useState } from "react";
-import Login from "./components/LoginSignUpPage/Login";
-import SignUp from "./components/LoginSignUpPage/SignUp";
-import JournalPage from "./components/Journal-Page";
+import Login from "./Components/LoginSignUpPage/Login";
+import SignUp from "./Components/LoginSignUpPage/SignUp";
+import JournalPage from "./Components/JournalPage/Journal-Page";
 
 const App: React.FC = () => {
   const [showSignUp, setShowSignUp] = useState(false);
