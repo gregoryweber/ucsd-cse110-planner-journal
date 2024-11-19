@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import { TaskMenuContext } from '../TaskMenu/TaskMenuContext';
 import TaskMenu from '../TaskMenu/TaskMenu';
 import DisplayDayObjects from './DisplayDayObjects';
-import { MonthChangeContext } from '../MonthChangeButton/MonthChangeContext';
 import { AccountContext } from '../LoginSignUpPage/AccountContext';
+import MonthChangeButton from '../MonthChangeButton/monthChangeButton';
 
 const CalendarPage: React.FC = () => {
     const taskMenuContext = useContext(TaskMenuContext);
-    const monthChangeContext = useContext(MonthChangeContext);
+    
 
     const dayStyle = {
         display: 'flex',
@@ -64,45 +64,11 @@ const CalendarPage: React.FC = () => {
             </h1>
             <div /> {/* Empty div to balance the space */}
         </div>
-        <div style={flexContainer}>
-    <button style={{
-        border: '0',
-        height: '32px',
-        marginTop: '4px', // Reduced from 16px
-        backgroundColor: '#2BE0E9',
-        fontWeight: 'bold',
-        width: '32px',
-        borderRadius: '4px 0 0 4px', // Only round left corners
-        marginRight: '0', // Remove right margin
-    }}>{'<'}</button>
-
-    <h1 style={{
-        textAlign: 'center',
-        backgroundColor: '#D9D9D9',
-        color: 'black',
-        fontWeight: 'normal',
-        fontSize: '24px',
-        width: '300px', 
-        height: '32px', 
-        margin: '4px 0', // Changed from '0 16px'
-        display: 'flex',
-        alignItems: 'center', 
-        justifyContent: 'center',
-    }}>
-        MONTH YEAR
-    </h1>
-
-    <button style={{
-        border: '0',
-        height: '32px',
-        marginTop: '4px', // Reduced from 16px
-        backgroundColor: '#2BE0E9',
-        fontWeight: 'bold',
-        width: '32px',
-        borderRadius: '0 4px 4px 0', // Only round right corners
-        marginLeft: '0', // Remove left margin
-    }}>{'>'}</button>
-</div>
+        <div style={{ margin: '20px 0' }}>
+            <div className="arrow-container">
+                <MonthChangeButton/>
+            </div>
+        </div>
 
             <div style={{
                 display: 'grid',

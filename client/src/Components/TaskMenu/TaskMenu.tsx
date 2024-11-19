@@ -16,6 +16,11 @@ const TaskMenu: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!taskName || !startTime || !endTime) {
+      alert("Please fill out all fields: Task Name, Start Time, and End Time.");
+      return;
+    }
+
     if (!taskMenuContext.currentDate) {
         console.error("Current date is null");
         return;

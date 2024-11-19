@@ -4,18 +4,14 @@ import { MonthChangeContext } from "../MonthChangeButton/MonthChangeContext";
 
 const DayObjects = () => {
     const {currentYear, currentMonth, setCurrentMonth, setCurrentYear} = useContext(MonthChangeContext);
-    //Testing
     
-    useEffect
-    (() => {
-        setCurrentMonth(new Date().getMonth());
-        setCurrentYear(new Date().getFullYear());
-    }, [setCurrentMonth, setCurrentYear]);
+    
 
     if (currentYear === null || currentMonth === null) {
         return null;
     }
 
+    console.log(currentYear, currentMonth);
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
     return (
