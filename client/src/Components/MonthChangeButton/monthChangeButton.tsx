@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from 'react'
 import ReactDOM from "react-dom";
 import { months } from "./months";
@@ -7,11 +7,15 @@ import { useDynamicYears } from "./years";
 import DatePicker from 'react-datepicker';
 import { getMonth, getYear } from "date-fns";
 import './monthChangeButton.css'
+import { MonthChangeContext } from "./MonthChangeContext";
 
 
 const MonthChangeButton: React.FC = () =>{
+  const monthChangeContext = useContext(MonthChangeContext);
   
   const [selectedDate, setSelectedDate] = useState(new Date()); // Default to current date
+  monthChangeContext.setCurrentMonth(selectedDate.getMonth());
+  monthChangeContext.setCurrentYear(selectedDate.getFullYear());
 
   const dynamicYears = useDynamicYears({
     startingYear: 2015,
@@ -46,6 +50,9 @@ const MonthChangeButton: React.FC = () =>{
     } else {
       setSelectedDate(new Date(currentYear, currentMonth + 1));  // Otherwise just increase the month
     }
+
+    monthChangeContext.setCurrentMonth(selectedDate.getMonth());
+    monthChangeContext.setCurrentYear(selectedDate.getFullYear());
   };
 
   const decreaseMonth = () => {
@@ -58,6 +65,9 @@ const MonthChangeButton: React.FC = () =>{
       
       setSelectedDate(new Date(currentYear, currentMonth - 1)); // Otherwise just decrease the month
     }
+
+    monthChangeContext.setCurrentMonth(selectedDate.getMonth());
+    monthChangeContext.setCurrentYear(selectedDate.getFullYear());
   };
 
 

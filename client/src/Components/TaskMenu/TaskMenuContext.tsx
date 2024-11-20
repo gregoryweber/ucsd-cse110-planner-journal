@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Task } from "../../Types/TaskType";
 
 //Create a context Type for the TaskMenu component
@@ -8,6 +8,7 @@ interface TaskMenuContextType {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
     tasks: Record<string, Task[]>;
+    setTasks: (tasks: Record<string, Task[]>) => void;
     addTask: (date: Date, task: Task) => void;
     removeTask: (date: Date, taskId: number) => void;
 }
@@ -19,6 +20,7 @@ const initialTaskMenu: TaskMenuContextType = {
     isOpen: false,
     setIsOpen: () => {},
     tasks: {},
+    setTasks: () => {},
     addTask: () => {},
     removeTask: () => {},
 };
@@ -55,6 +57,7 @@ export const TaskMenuContextProvider: React.FC<{children: React.ReactNode}> = ({
             isOpen,
             setIsOpen,
             tasks,
+            setTasks,
             addTask,
             removeTask,
         }}>

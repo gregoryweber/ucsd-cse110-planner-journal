@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
-import DayObject from '../DayObject/DayObject';
 import { TaskMenuContext } from '../TaskMenu/TaskMenuContext';
 import TaskMenu from '../TaskMenu/TaskMenu';
+import DisplayDayObjects from './DisplayDayObjects';
+import { AccountContext } from '../LoginSignUpPage/AccountContext';
+import MonthChangeButton from '../MonthChangeButton/monthChangeButton';
 
 const CalendarPage: React.FC = () => {
     const taskMenuContext = useContext(TaskMenuContext);
+    
 
     const dayStyle = {
         display: 'flex',
@@ -17,86 +20,70 @@ const CalendarPage: React.FC = () => {
         backgroundColor: '#78A1ED',
         fontWeight: 'bold'
     };
-    const tempBoxes = {
-        display: 'flex',
-        margin: '0',
-        gap: '0',
-        width: '100%',
-        height: '100%',
-        border:'1px solid black',
-        backgroundColor: '#D9D9D9'
-    };
     const flexContainer = {
         display: 'flex',
         justifyContent: 'center'
     };
     
     return (
-        <>      
+        <>
+        <div style={{
+            display: 'grid',
+            gridTemplateColumns: '120px 1fr 120px',
+            alignItems: 'center',
+            padding: '2px',
+            width: '100%',
+        }}>
+        <div style={{ width: '120px' }}> 
+            <LogoutButton/>
+        </div>
         <h1 style={{
             textAlign: 'center',
             backgroundColor: '#D9D9D9',
-            marginLeft: '30%',
-            marginRight: '30%',
+            width: '500px',  
+            height: '40px', 
+            margin: '0 auto', 
             borderRadius: '10px',
             fontWeight: 'normal',
             fontStyle: 'italic',
-            marginBottom: '0'
+            display: 'flex',
+            alignItems: 'center', 
+            justifyContent: 'center',
+            position: 'relative', 
         }}>
-            {/* <button 
-                onClick={onLogout}
-                style={{
-                marginLeft: '25%',
-                marginTop: '20%',
-                paddingTop: '7%',
-                width: '100px',
-                height: '25px',
-                borderRadius: '10px',
-                backgroundColor: '#FE7D7D',
-                boxShadow: '0px 3px 3px #888888'
+            <span style={{
+                position: 'absolute',  
+                left: '50%',
+                top: '50%',
+                transform: 'translate(-50%, -50%)', 
+                width: 'auto',  
+                textAlign: 'center'
             }}>
-                Logout
-            </button> */}
                 PLANNER
+            </span>
             </h1>
-            <div></div>
-            <div style={flexContainer}>
-                <button style={{
-                    border: '0',
-                    height: '32px',
-                    marginTop: '16px',
-                    backgroundColor: '#2BE0E9',
-                    fontWeight: 'bold',
-                    width: '3%',
-                    borderRadius: '0'
-                }}>{'<'}</button>
+            <div /> {/* Empty div to balance the space */}
+        </div>
+        <div style={{ margin: '20px 0' }}>
+            <div className="arrow-container">
+                <MonthChangeButton/>
+            </div>
+        </div>
 
-                <h1 style={{
-                    textAlign: 'center',
-                    backgroundColor: '#D9D9D9',
-                    color: 'black',
-                    fontWeight: 'normal',
-                    fontSize: '24px',
-                    paddingLeft: '12%',
-                    paddingRight: '12%',
-                    width: '16%'
-                }}>
-                    MONTH YEAR
-                </h1>
-
-                <button style={{
-                    border: '0',
-                    height: '32px',
-                    marginTop: '16px',
-                    backgroundColor: '#2BE0E9',
-                    fontWeight: 'bold'
-                }}>{'>'}</button>
-            </div><div style={{
+            <div style={{
                 display: 'grid',
-                gridTemplateRows: '1fr',
-                gridTemplateColumns: '15% 85%'
+                gridTemplateRows: 'auto repeat(5, 1fr)', // Changed to 1fr for equal sizing
+                gridTemplateColumns: 'repeat(7, 1fr)',
+                marginLeft: '1rem',
+                marginRight: '0rem',
+                height: "calc(100vh - 200px)", // Adjust based on header height
+                gap: '4px', // Add consistent gap between cells
+                minHeight: '600px' // Ensure minimum height
             }}>
-                <div>
+                <div style={{
+                
+                width: '230px',
+            }}>
                     {taskMenuContext.isOpen ? <TaskMenu/> : null}
                 </div>
 
@@ -117,43 +104,7 @@ const CalendarPage: React.FC = () => {
                     <p style={dayStyle}>Saturday</p>
                     {/* where all the day objects go */}
                     {/* everything below to be replaced */}
-                    <div>
-                       <DayObject currentDate={new Date()}/>
-                    </div>
-                    <div style={tempBoxes}>2</div>
-                    <div style={tempBoxes}>3</div>
-                    <div style={tempBoxes}>4</div>
-                    <div style={tempBoxes}>5</div>
-                    <div style={tempBoxes}>6</div>
-                    <div style={tempBoxes}>7</div>
-                    <div style={tempBoxes}>8</div>
-                    <div style={tempBoxes}>9</div>
-                    <div style={tempBoxes}>10</div>
-                    <div style={tempBoxes}>11</div>
-                    <div style={tempBoxes}>12</div>
-                    <div style={tempBoxes}>13</div>
-                    <div style={tempBoxes}>14</div>
-                    <div style={tempBoxes}>15</div>
-                    <div style={tempBoxes}>16</div>
-                    <div style={tempBoxes}>17</div>
-                    <div style={tempBoxes}>18</div>
-                    <div style={tempBoxes}>19</div>
-                    <div style={tempBoxes}>20</div>
-                    <div style={tempBoxes}>21</div>
-                    <div style={tempBoxes}>22</div>
-                    <div style={tempBoxes}>23</div>
-                    <div style={tempBoxes}>24</div>
-                    <div style={tempBoxes}>25</div>
-                    <div style={tempBoxes}>26</div>
-                    <div style={tempBoxes}>27</div>
-                    <div style={tempBoxes}>28</div>
-                    <div style={tempBoxes}>29</div>
-                    <div style={tempBoxes}>30</div>
-                    <div style={tempBoxes}>31</div>
-                    <div style={tempBoxes}></div>
-                    <div style={tempBoxes}></div>
-                    <div style={tempBoxes}></div>
-                    <div style={tempBoxes}></div>
+                    <DisplayDayObjects/>
                 </div>
         </div>
         </>
@@ -161,3 +112,40 @@ const CalendarPage: React.FC = () => {
 };
 
 export default CalendarPage;
+
+const LogoutButton = () => {
+    const accountContext = useContext(AccountContext);
+    const taskMenuContext = useContext(TaskMenuContext);
+
+    const onLogout = () => {
+        taskMenuContext.setIsOpen(false);
+        taskMenuContext.setCurrentDate(null);
+        taskMenuContext.setTasks({});
+
+        accountContext.setIsLoggedIn(false);
+        accountContext.setUsername(null);
+        accountContext.setPassword(null);
+    };
+
+    return (
+            <button 
+                onClick={onLogout}
+                style={{
+                    width: '120px',
+                    height: '36px',
+                    backgroundColor: '#78A1ED',
+                    color: 'white',
+                    borderRadius: '6px',
+                    border: '1',
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s',
+                }}
+                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#6691dd'}
+                onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#78A1ED'}
+            >
+                Logout
+            </button>
+    );
+};

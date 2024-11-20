@@ -5,9 +5,7 @@ import Login from '../../Components/LoginSignUpPage/Login';
 
 describe('Login Component', () => {
   test('renders the login form with username and password inputs', () => {
-    render(<Login goToSignUp={() => { } } onLogin={function (): void {
-      throw new Error('Function not implemented.');
-    } } />);
+    render(<Login setShowSignUp={() => { } }/>);
 
     // Check if "Log In" header is present
     expect(screen.getByRole('heading', { name: 'Log In' })).toBeInTheDocument();
@@ -25,9 +23,7 @@ describe('Login Component', () => {
 
   test('calls goToSignUp when "Sign Up" link is clicked', () => {
     const goToSignUpMock = jest.fn();
-    render(<Login goToSignUp={goToSignUpMock} onLogin={function (): void {
-      throw new Error('Function not implemented.');
-    } } />);
+    render(<Login setShowSignUp={goToSignUpMock} />);
 
     // Click on the "Sign Up" link
     fireEvent.click(screen.getByText('Sign Up'));

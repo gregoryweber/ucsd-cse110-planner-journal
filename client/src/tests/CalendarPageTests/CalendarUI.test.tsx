@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import CalendarPage from "../../Components/CalendarPage/Calendar-Page";
 
@@ -17,4 +17,5 @@ test('renders CalendarPage component', () => {
     expect(screen.getByText(/Thursday/i)).toBeInTheDocument();
     expect(screen.getByText(/Friday/i)).toBeInTheDocument();
     expect(screen.getByText(/Saturday/i)).toBeInTheDocument();
+    expect(screen.getByText(/Logout/i)).toBeInTheDocument();
 });

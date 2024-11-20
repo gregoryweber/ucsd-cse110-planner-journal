@@ -1,8 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { JournalPageContext } from "../JournalPage/JournalPageContext";
 import CalendarPage from "../CalendarPage/Calendar-Page";
 import JournalPage from "../JournalPage/Journal-Page";
 import { TaskMenuContextProvider } from "../TaskMenu/TaskMenuContext";
+import { MonthChangeContextProvider } from "../MonthChangeButton/MonthChangeContext";
 
 const DisplayCalendarJournal = () => {
     const journalPageContext = useContext(JournalPageContext);
@@ -11,9 +12,11 @@ const DisplayCalendarJournal = () => {
         <>
             {journalPageContext.isOpen ? 
                 <JournalPage /> 
-                : <TaskMenuContextProvider>
-                    <CalendarPage/>
-                </TaskMenuContextProvider>
+                : <MonthChangeContextProvider>
+                        <TaskMenuContextProvider>
+                            <CalendarPage />
+                        </TaskMenuContextProvider>
+                </MonthChangeContextProvider>
             }
         </>
     );
