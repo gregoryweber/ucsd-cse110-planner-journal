@@ -51,8 +51,10 @@ const MonthChangeButton: React.FC = () =>{
       setSelectedDate(new Date(currentYear, currentMonth + 1));  // Otherwise just increase the month
     }
 
+
     monthChangeContext.setCurrentMonth(selectedDate.getMonth());
     monthChangeContext.setCurrentYear(selectedDate.getFullYear());
+
   };
 
   const decreaseMonth = () => {
@@ -66,8 +68,10 @@ const MonthChangeButton: React.FC = () =>{
       setSelectedDate(new Date(currentYear, currentMonth - 1)); // Otherwise just decrease the month
     }
 
+
     monthChangeContext.setCurrentMonth(selectedDate.getMonth());
     monthChangeContext.setCurrentYear(selectedDate.getFullYear());
+
   };
 
 
@@ -80,38 +84,45 @@ const MonthChangeButton: React.FC = () =>{
 
        <div className="Cell">
        <div className="arrow-container" >
-        
-        <button className="arrow-button left-arrow" onClick={decreaseMonth} >
+
+
+       <label htmlFor="left-arrow" hidden>decrease month</label>
+           <button className="arrow-button left-arrow" aria-label="Decrease Month" onClick={decreaseMonth} >
         <span className="arrow" />
-        </button>
+        </button> 
+
         </div>
 
        </div>
 
       
-         
-
+ 
 
        <div className="Cell2">
        
       <div className="dropdown-calendar">
-      <label htmlFor="month"><b> Select Month: </b></label>
-      <select onChange={handleMonthSelect} value={selectedDate.getMonth()}>
+
+      <label htmlFor="month-select"><b> Select Month: </b></label>
+      <select id="month-select" data-testid="month-select" onChange={handleMonthSelect} value={selectedDate.getMonth()}>
+
           {months.map((key, index) => (
             <option value={index} key={index}>
               {key}
             </option>
           ))}
         </select>
+
+
+     
         
 
         
-        
-        
-        
-        <label htmlFor="year"> <b> Select Year: </b></label>
               
-        <select id="year"  onChange={handleYearSelect} value={selectedDate.getFullYear()}>
+        
+        <label htmlFor="year-select"> <b> Select Year: </b></label>
+              
+        <select id="year-select" data-testid="year-select" onChange={handleYearSelect} value={selectedDate.getFullYear()}>
+
         {dynamicYears.map((key, index) => (
             <option value={key} key={index}>
               {key}
@@ -126,8 +137,9 @@ const MonthChangeButton: React.FC = () =>{
 
       <div className="Cell">
        <div className="arrow-container" >
-        
-        <button className="arrow-button right-arrow" onClick={increaseMonth}>
+
+       <label htmlFor="right-arrow" hidden>increase month</label>
+        <button className="arrow-button right-arrow"  aria-label="Increase Month" onClick={increaseMonth}>
         <span className="arrow" />
         </button>
         </div>
@@ -135,9 +147,20 @@ const MonthChangeButton: React.FC = () =>{
        </div>
 
        
+
+
+
+       
     </div>
+    <h1 data-testid="current-date" hidden >
+        {selectedDate.toLocaleString('default', { month: 'long' })} {selectedDate.getFullYear()}
+      </h1>
+     
+      
     </div>
+    
   );
 }
 
 export default MonthChangeButton;
+

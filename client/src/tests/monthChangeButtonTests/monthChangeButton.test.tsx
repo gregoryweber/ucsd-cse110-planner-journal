@@ -1,73 +1,114 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import MonthChangeButton from "../../Components/MonthChangeButton/monthChangeButton";
 
-describe("Test Button", () => {
-   // test("renders create note form", () => {
-        //render(<MonthChange />);
-    //}
+import React from 'react';
+import '@testing-library/jest-dom';
+import { render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
+import MonthChangeButtonSims from '../../Components/MonthChangeButton/monthChangeButton'
 
-    test("dummy test", () => {
-        expect(1).toBe(1);
-    });
-    // const dummyMonthChange = [
-    //     {
-    //          month: "November",
-    //          year: 2024
-    //     }
+
+describe('MonthChangeButtonSim Compoenent Tests', () => {
+
+    beforeEach(() => {
+        jest.useFakeTimers().setSystemTime(new Date(2024, 10, 15).getTime()); // default current date (Nov 15, 2024)
+      });
+    
+      afterEach(() => {
+        jest.useRealTimers();
+      });
+
+  test('Initial dropdown values is current month and current year', () => {
+    render(<MonthChangeButtonSims  />);
+    
+    const monthDropdown = screen.getByTestId(/month-select/i) as HTMLSelectElement;
+    const yearDropdown = screen.getByTestId(/year-select/i) as HTMLSelectElement;
+    expect(monthDropdown.value).toBe('10'); // check current Month is November
+    expect(yearDropdown.value).toBe('2024'); // check current year is 2024
+
+    
+  });
+
+
+
+  test('rightbutton click increases display and dropdown value', async () => {
+   
+    render(<MonthChangeButtonSims />);
      
-    //  ]
+    const monthDropdown = screen.getByTestId(/month-select/i) as HTMLSelectElement;
+    const yearDropdown = screen.getByTestId(/year-select/i) as HTMLSelectElement;
+    expect(monthDropdown.value).toBe('10'); // check current Month is November
+    expect(yearDropdown.value).toBe('2024'); // check current year is 2024
 
-    // test("leftButton decreases month", () => {
-    //     render(<MonthChangeButton/>);
-    //     const checkMonth = screen.getByPlaceholderText("November");
-    //     const checkYear = screen.getByPlaceholderText(2024);
+    const increaseButton = screen.getByRole('button', { name: /increase month/i });
+    fireEvent.click(increaseButton);
 
-    //     const button = result.container.querySelectorAll(".arrow-button left-arrow");
-    //     fireEvent.click(button);
-    //     const month = screen.queryByText(dummyMonthChange.month);
-    //     expect(month).toBe("October");
-    // });
+    const displayedDate = screen.getByTestId('current-date').textContent;
+    expect(displayedDate).toBe('December 2024'); // Month increases to December
 
-    // test("rightButton increases month", () => {
-    //     render(<MonthChangeButton/>);
-    //     const checkMonth = screen.getByPlaceholderText("November");
-    //     const checkYear = screen.getByPlaceholderText(2024);
+    const monthDropdownResult = screen.getByTestId(/month-select/i) as HTMLSelectElement;
+    const yearDropdownResult = screen.getByTestId(/year-select/i) as HTMLSelectElement;
+    expect(monthDropdownResult.value).toBe('11'); // Get current Month is December
+    expect(yearDropdownResult.value).toBe('2024'); // Assume current year is 2024
+  
+    
+  });
 
-    //     const button = result.container.querySelectorAll(".arrow-button right-arrow");
-    //     fireEvent.click(button);
-    //     const month = screen.queryByText(dummyMonthChange.month);
-    //     expect(month).toBe("December");
-    // });
+  test('leftbutton click decreases display and dropdown value', async () => {
+    
+    render(<MonthChangeButtonSims />);
 
-    // test("leftButton decreases year", () => {
-    //     render(<MonthChangeButton/>);
-    //     const checkMonth = screen.getByPlaceholderText("November");
-    //     const checkYear = screen.getByPlaceholderText(2024);
+    const monthDropdown = screen.getByTestId(/month-select/i) as HTMLSelectElement;
+    const yearDropdown = screen.getByTestId(/year-select/i) as HTMLSelectElement;
+    expect(monthDropdown.value).toBe('10'); // check current Month is November
+    expect(yearDropdown.value).toBe('2024'); // check current year is 2024
 
-    //     const button = result.container.querySelectorAll(".arrow-button right-arrow")[0];
-    //     for(let i = 0; i < 11; i++)
-    //     {
-    //         fireEvent.click(button);
-    //     }
-    //     const month = screen.queryByText(dummyMonthChange.month);
-    //     const year = screen.queryByText(dummyMonthChange.year);
-    //     expect(month).toBe("December");
-    //     expect(year).toBe(2023);
-    // });
+    const decreaseButton = screen.getByRole('button', { name: /decrease month/i });
+    fireEvent.click(decreaseButton);
 
-    // test("rightButton increases year", () => {
-    //     render(<MonthChangeButton/>);
-    //     const checkMonth = screen.getByPlaceholderText("November");
-    //     const checkYear = screen.getByPlaceholderText(2024);
-        
-    //     const button = result.container.querySelectorAll(".arrow-button right-arrow")[0];
-    //     for(let i = 0; i < 2; i++)
-    //     {
-    //         fireEvent.click(button);
-    //     }
-    //     const month = screen.queryByText(dummyMonthChange.month);
-    //     const year = screen.queryByText(dummyMonthChange.year);
-    //     expect(month).toBe("January");
-    //     expect(year).toBe(2025);
-    // });
-});
+    const displayedDate = screen.getByTestId('current-date').textContent;
+    expect(displayedDate).toBe('October 2024'); // Month decreases to October
+
+    const monthDropdownResult = screen.getByTestId(/month-select/i) as HTMLSelectElement;
+    const yearDropdownResult = screen.getByTestId(/year-select/i) as HTMLSelectElement;
+    expect(monthDropdownResult.value).toBe('9'); // Get current Month is October
+    expect(yearDropdownResult.value).toBe('2024'); // Assume current year is 2024
+  
+      });
+
+
+  test('December month increase resets month and increases year', () => {
+    jest.useFakeTimers().setSystemTime(new Date(2024, 11, 15).getTime()); // Set mock current date (Dec 15, 2024)
+    render(<MonthChangeButtonSims />);
+
+    const monthDropdown = screen.getByTestId(/month-select/i) as HTMLSelectElement;
+    const yearDropdown = screen.getByTestId(/year-select/i) as HTMLSelectElement;
+    expect(monthDropdown.value).toBe('11'); // check current Month is December
+    expect(yearDropdown.value).toBe('2024'); // check current year is 2024
+
+    const increaseButton = screen.getByRole('button', { name: /increase month/i });
+    fireEvent.click(increaseButton);
+
+    const displayedDate = screen.getByTestId('current-date').textContent;
+    expect(displayedDate).toBe('January 2025'); // Year changes to 2025
+  });
+
+  test('changes to previous year when decrease month from January', () => {
+    jest.useFakeTimers().setSystemTime(new Date(2024, 0, 15).getTime()); // Set mock current date (Jan 15, 2024)
+    render(<MonthChangeButtonSims />);
+
+    const monthDropdown = screen.getByTestId(/month-select/i) as HTMLSelectElement;
+    const yearDropdown = screen.getByTestId(/year-select/i) as HTMLSelectElement;
+    expect(monthDropdown.value).toBe('11'); // check current Month is December
+    expect(yearDropdown.value).toBe('2024'); // check current year is 2024
+    
+    const decreaseButton = screen.getByRole('button', { name: /decrease month/i });
+    fireEvent.click(decreaseButton);
+
+    const displayedDate = screen.getByTestId('current-date').textContent;
+    expect(displayedDate).toBe('December 2023'); // Year changes to 2023
+  });
+
+
+
+  
+
+}  )
