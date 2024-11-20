@@ -11,7 +11,6 @@ const DayObjects = () => {
         return null;
     }
 
-    console.log(currentYear, currentMonth);
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
     return (
