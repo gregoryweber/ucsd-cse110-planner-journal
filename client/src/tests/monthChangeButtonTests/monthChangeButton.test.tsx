@@ -2,8 +2,7 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
-import MonthChangeButtonSims from '../../Components/MonthChangeButton/monthChangeButtonSim'
-
+import MonthChangeButtonSims from '../../Components/MonthChangeButton/monthChangeButton'
 
 
 describe('MonthChangeButtonSim Compoenent Tests', () => {
