@@ -26,11 +26,6 @@ jobs:
       
       - name: Install Dependencies
         run: npm ci # Using ci instead of install for cleaner, more reliable builds
-
-      - name: Build Project
-        run: npm run build
-        env:
-            CI: false
       
       - name: Run Unit Tests
         run: npm test
