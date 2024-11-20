@@ -91,12 +91,12 @@ describe('MonthChangeButtonSim Compoenent Tests', () => {
   });
 
   test('changes to previous year when decrease month from January', () => {
-    jest.useFakeTimers().setSystemTime(new Date(2024, 0, 15).getTime()); // Set mock current date (Jan 15, 2024)
+    jest.useFakeTimers().setSystemTime(new Date(2024, 1, 15).getTime()); // Set mock current date (Jan 15, 2024)
     render(<MonthChangeButtonSims />);
 
     const monthDropdown = screen.getByTestId(/month-select/i) as HTMLSelectElement;
     const yearDropdown = screen.getByTestId(/year-select/i) as HTMLSelectElement;
-    expect(monthDropdown.value).toBe('11'); // check current Month is December
+    expect(monthDropdown.value).toBe('0'); // check current Month is January
     expect(yearDropdown.value).toBe('2024'); // check current year is 2024
     
     const decreaseButton = screen.getByRole('button', { name: /decrease month/i });

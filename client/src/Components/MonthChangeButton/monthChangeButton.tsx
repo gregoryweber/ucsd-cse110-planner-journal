@@ -8,7 +8,7 @@ import { getMonth, getYear } from "date-fns";
 import './monthChangeButton.css'
 
 
-const MonthChangeButtonSims: React.FC = () =>{
+const MonthChangeButton: React.FC = () =>{
   
   const [selectedDate, setSelectedDate] = useState(new Date()); // Default to current date
 
