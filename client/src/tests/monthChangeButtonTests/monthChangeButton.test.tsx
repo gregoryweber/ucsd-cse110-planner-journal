@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event'
 import MonthChangeButton from '../../Components/MonthChangeButton/monthChangeButton'
 
 
-describe('MonthChangeButtonSim Compoenent Tests', () => {
+describe('MonthChangeButton Compoenent Tests', () => {
 
     beforeEach(() => {
         jest.useFakeTimers().setSystemTime(new Date(2024, 10, 15).getTime()); // default current date (Nov 15, 2024)
