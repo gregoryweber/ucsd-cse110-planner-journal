@@ -66,7 +66,9 @@ describe("TaskMenu Component", () => {
       id: 1,
       name: "New Task",
       start: "10:00 AM",
-      end: "11:00 PM"
+      end: "11:00 PM",
+      isReminder: false,
+      reminderTime: undefined
     };
     expect(mockAddTask).toHaveBeenCalledWith(new Date(2024, 10, 11), newTask);
   });
