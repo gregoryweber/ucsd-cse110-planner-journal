@@ -1,5 +1,5 @@
 .reminder-popup {
-  position: absolute;
+  position: fixed; 
   top: 20px;
   right: 20px;
   width: 250px;
@@ -7,10 +7,11 @@
   border: 1px solid #ccc;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  z-index: 1000;
+  z-index: 9999; 
   font-family: Arial, sans-serif;
-  padding-bottom: 50px; /* Add padding to prevent content overlap */
+  padding-bottom: 50px; 
 }
+
 
 .reminder-popup-header {
   display: flex;
