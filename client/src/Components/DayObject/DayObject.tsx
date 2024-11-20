@@ -1,6 +1,8 @@
-import { useContext, useEffect } from "react";
-import { DayObjectContext, Task } from "./DayObjectContext";
+import { useContext } from "react";
 import './DayObjectStyle.css';
+import { Task } from "../../Types/TaskType";
+import { JournalPageContext } from "../JournalPage/JournalPageContext";
+import { TaskMenuContext } from "../TaskMenu/TaskMenuContext";
 
 interface DayObjectProps {
     currentDate: Date;
@@ -9,87 +11,10 @@ interface DayObjectProps {
 //Create a DayObject component that will be used to display the tasks for that date
 const DayObject = ({currentDate}: DayObjectProps) => {
 
-    const context = useContext(DayObjectContext);
+    const taskMenuContext = useContext(TaskMenuContext);
+    const dateKey = currentDate.toISOString().split('T')[0];
+    const dayTasks = taskMenuContext.tasks[dateKey] || [];
     
-    context.setCurrentDate(currentDate);
-
-    useEffect(() => {
-        loadTasks();
-    }, []);
-
-    const loadTasks = async () => {
-        // try {
-        //     const taskList = await fetchTasks(currentDate);
-        //     context.setTasks(taskList);
-        // } catch (err: any) {
-        //     console.log(err.message);
-        // }
-
-        context.setTasks([
-            {
-                id: 1,
-                name: "Task 1",
-                start: "8:00 AM",
-                end: "9:00 AM"
-            },
-            {
-                id: 2,
-                name: "Task 2",
-                start: "9:00 AM",
-                end: "10:00 AM"
-            },
-            {
-                id: 3,
-                name: "Task 3",
-                start: "10:00 AM",
-                end: "11:00 AM"
-            },
-            {
-                id: 4,
-                name: "Task 4",
-                start: "11:00 AM",
-                end: "12:00 PM"
-            },
-            {
-                id: 5,
-                name: "Task 5",
-                start: "12:00 PM",
-                end: "1:00 PM"
-            },
-            {
-                id: 6,
-                name: "Task 6",
-                start: "1:00 PM",
-                end: "2:00 PM"
-            },
-            {
-                id: 7,
-                name: "Task 7",
-                start: "2:00 PM",
-                end: "3:00 PM"
-            },
-            {
-                id: 8,
-                name: "Task 8",
-                start: "3:00 PM",
-                end: "4:00 PM"
-            },
-            {
-                id: 9,
-                name: "Task 9",
-                start: "4:00 PM",
-                end: "5:00 PM"
-            },
-            {
-                id: 10,
-                name: "Task 10",
-                start: "5:00 PM",
-                end: "6:00 PM"
-            }
-
-        ]);
-    }
-
     return (
         <div>
             <div className="dayObject">
@@ -97,10 +22,10 @@ const DayObject = ({currentDate}: DayObjectProps) => {
                     <div className="dayObject__header__date">{currentDate.getDate()}</div>
                 </div>
                 <div className="dayObject__tasks">
-                    <DisplayTasks/>
+                    <DisplayTasks currentDate={currentDate} dayTasks={dayTasks}/>
                 </div>
-                <AddTaskButton/>
-                <JournalEntryButton/>
+                <AddTaskButton currentDate={currentDate}/>
+                <JournalEntryButton currentDate={currentDate}/>
             </div>
         </div>
     );
@@ -108,40 +33,66 @@ const DayObject = ({currentDate}: DayObjectProps) => {
 
 export default DayObject;
 
+//Props for AddTaskButton component
+interface AddTaskButtonProps {
+    currentDate: Date;
+}
+
 //Create a button component that will be used to add a task to DayObject
-const AddTaskButton = () => {
+const AddTaskButton = ({currentDate}: AddTaskButtonProps) => {
+    const taskMenuContext = useContext(TaskMenuContext);
+
     const handleClick = () => {
-        //<CreateTaskForm/>
+        taskMenuContext.setIsOpen(!taskMenuContext.isOpen);
+        taskMenuContext.setCurrentDate(currentDate);
+        
     };
 
     return (
-        <div>
-            <button className="addTaskButton" onClick={handleClick}>+</button>
-        </div>
+        <>
+            <div>
+                <button className="addTaskButton" onClick={handleClick}>+</button>
+            </div>
+        </>
     );
+}
+
+//Props for JournalEntryButton component
+interface JournalEntryButtonProps {
+    currentDate: Date;
 }
 
 //Create a button component that will be used to add a journal entry to DayObject
-const JournalEntryButton = () => {
+const JournalEntryButton = ({currentDate}: JournalEntryButtonProps) => {
+    const journalPageContext = useContext(JournalPageContext);
+
     const handleClick = () => {
-        //<Journal/>
+        journalPageContext.setIsOpen(true);
+        journalPageContext.setCurrentDate(currentDate);
     };
 
     return (
+    <>
         <div>
             <button className="journalEntryButton" onClick={handleClick}>Journal</button>
         </div>
+    </>
     );
 }
 
+//Props for DisplayTasks component
+interface DisplayTasksProps {
+    dayTasks: Task[];
+    currentDate: Date;
+}
+
 //Create a component that will display the tasks for the current date
-const DisplayTasks = () => {
-    const context = useContext(DayObjectContext);
+const DisplayTasks = ({dayTasks, currentDate}: DisplayTasksProps) => {
     
     return (
         <div>
-            {context.tasks.map((task) => (
-                <TaskItem task={task} />
+           {dayTasks.map((task) => (
+            <TaskItem task={task} key={task.id} currentDate={currentDate}/>
             ))}
         </div>
     );
@@ -150,21 +101,19 @@ const DisplayTasks = () => {
 //Props for TaskItem component
 interface TaskItemProps {
     task: Task;
+    currentDate: Date;
 }
 
 //Create a component that will display a single task
-const TaskItem = ({task}: TaskItemProps) => {
-    const context = useContext(DayObjectContext);
-    
-    const handleClick = () => {
-        context.setTasks(context.tasks.filter((t) => t.id !== task.id));
-    }
+const TaskItem = ({task, currentDate}: TaskItemProps) => {
+    const { removeTask } = useContext(TaskMenuContext);
 
     return (
         <div>
             <div className="taskItem">
                 <div className="taskItem__name">{task.name}</div>
-                <button className="taskItem__deleteButton" onClick={handleClick}>x</button>
+                <button className="taskItem__deleteButton" onClick={() => removeTask(currentDate, task.id)} 
+                        data-testid={`remove-button-task-${task.id}`}>x</button>
                 <div className="taskItem__description">{task.start} - {task.end}</div>
             </div>
         </div>

@@ -1,16 +1,21 @@
-import React from "react";
+
+import React, { useContext } from "react";
 import { useState } from 'react'
 import ReactDOM from "react-dom";
 import { months } from "./months";
-import { useDynamicYears } from "./years.js";
+import { useDynamicYears } from "./years";
 import DatePicker from 'react-datepicker';
 import { getMonth, getYear } from "date-fns";
 import './monthChangeButton.css'
+import { MonthChangeContext } from "./MonthChangeContext";
 
 
-const MonthChangeButtonSims: React.FC = () =>{
+const MonthChangeButton: React.FC = () =>{
+  const monthChangeContext = useContext(MonthChangeContext);
   
   const [selectedDate, setSelectedDate] = useState(new Date()); // Default to current date
+  monthChangeContext.setCurrentMonth(selectedDate.getMonth());
+  monthChangeContext.setCurrentYear(selectedDate.getFullYear());
 
   const dynamicYears = useDynamicYears({
     startingYear: 2015,
@@ -45,6 +50,11 @@ const MonthChangeButtonSims: React.FC = () =>{
     } else {
       setSelectedDate(new Date(currentYear, currentMonth + 1));  // Otherwise just increase the month
     }
+
+
+    monthChangeContext.setCurrentMonth(selectedDate.getMonth());
+    monthChangeContext.setCurrentYear(selectedDate.getFullYear());
+
   };
 
   const decreaseMonth = () => {
@@ -57,6 +67,11 @@ const MonthChangeButtonSims: React.FC = () =>{
       
       setSelectedDate(new Date(currentYear, currentMonth - 1)); // Otherwise just decrease the month
     }
+
+
+    monthChangeContext.setCurrentMonth(selectedDate.getMonth());
+    monthChangeContext.setCurrentYear(selectedDate.getFullYear());
+
   };
 
 
@@ -70,29 +85,33 @@ const MonthChangeButtonSims: React.FC = () =>{
        <div className="Cell">
        <div className="arrow-container" >
 
+
        <label htmlFor="left-arrow" hidden>decrease month</label>
            <button className="arrow-button left-arrow" aria-label="Decrease Month" onClick={decreaseMonth} >
         <span className="arrow" />
         </button> 
+
         </div>
 
        </div>
 
       
-         
-       
+ 
 
        <div className="Cell2">
        
       <div className="dropdown-calendar">
+
       <label htmlFor="month-select"><b> Select Month: </b></label>
       <select id="month-select" data-testid="month-select" onChange={handleMonthSelect} value={selectedDate.getMonth()}>
+
           {months.map((key, index) => (
             <option value={index} key={index}>
               {key}
             </option>
           ))}
         </select>
+
 
      
         
@@ -103,6 +122,7 @@ const MonthChangeButtonSims: React.FC = () =>{
         <label htmlFor="year-select"> <b> Select Year: </b></label>
               
         <select id="year-select" data-testid="year-select" onChange={handleYearSelect} value={selectedDate.getFullYear()}>
+
         {dynamicYears.map((key, index) => (
             <option value={key} key={index}>
               {key}
@@ -117,6 +137,7 @@ const MonthChangeButtonSims: React.FC = () =>{
 
       <div className="Cell">
        <div className="arrow-container" >
+
        <label htmlFor="right-arrow" hidden>increase month</label>
         <button className="arrow-button right-arrow"  aria-label="Increase Month" onClick={increaseMonth}>
         <span className="arrow" />
@@ -126,6 +147,7 @@ const MonthChangeButtonSims: React.FC = () =>{
        </div>
 
        
+
 
 
        
@@ -141,5 +163,4 @@ const MonthChangeButtonSims: React.FC = () =>{
 }
 
 export default MonthChangeButton;
-
 

@@ -3,10 +3,10 @@ import React from 'react';
 import './Auth.css';
 
 interface SignUpProps {
-  goToLogin: () => void;
+    setShowSignUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SignUp: React.FC<SignUpProps> = ({ goToLogin }) => {
+const SignUp: React.FC<SignUpProps> = ({ setShowSignUp }) => {
   return (
     <div className="auth-container">
       <h2>Sign Up</h2>
@@ -22,7 +22,7 @@ const SignUp: React.FC<SignUpProps> = ({ goToLogin }) => {
         <button type="submit">Create Account</button>
       </form>
       <p className="link">
-        <span onClick={goToLogin} className="link-button">Back to Log In</span>
+        <span onClick={() => setShowSignUp(false)} className="link-button">Back to Log In</span>
       </p>
     </div>
   );

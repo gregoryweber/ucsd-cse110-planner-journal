@@ -102,7 +102,7 @@
     width: 65px;
     height: 65px;
     font-size: large;
-    
+    flex: 1;
     
     }
 
@@ -116,8 +116,8 @@
     vertical-align: middle;
     background-color:lightgray;
     text-align: center;
-    
-    
+    gap: 10px;
+    flex: 2;
     }
 
     .react-datepicker__navigation--years {
@@ -149,7 +149,7 @@
       }
 
       .center{
-        position: absolute;
+        position: relative;
         top: 0;
         bottom: 0;
         left: 0;
