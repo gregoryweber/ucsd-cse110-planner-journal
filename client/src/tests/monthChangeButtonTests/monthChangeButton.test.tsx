@@ -3,7 +3,7 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
-import MonthChangeButtonSims from '../../Components/MonthChangeButton/monthChangeButton'
+import MonthChangeButton from '../../Components/MonthChangeButton/monthChangeButton'
 
 
 describe('MonthChangeButtonSim Compoenent Tests', () => {
@@ -17,7 +17,7 @@ describe('MonthChangeButtonSim Compoenent Tests', () => {
       });
 
   test('Initial dropdown values is current month and current year', () => {
-    render(<MonthChangeButtonSims  />);
+    render(<MonthChangeButton  />);
     
     const monthDropdown = screen.getByTestId(/month-select/i) as HTMLSelectElement;
     const yearDropdown = screen.getByTestId(/year-select/i) as HTMLSelectElement;
@@ -31,7 +31,7 @@ describe('MonthChangeButtonSim Compoenent Tests', () => {
 
   test('rightbutton click increases display and dropdown value', async () => {
    
-    render(<MonthChangeButtonSims />);
+    render(<MonthChangeButton />);
      
     const monthDropdown = screen.getByTestId(/month-select/i) as HTMLSelectElement;
     const yearDropdown = screen.getByTestId(/year-select/i) as HTMLSelectElement;
@@ -54,7 +54,7 @@ describe('MonthChangeButtonSim Compoenent Tests', () => {
 
   test('leftbutton click decreases display and dropdown value', async () => {
     
-    render(<MonthChangeButtonSims />);
+    render(<MonthChangeButton />);
 
     const monthDropdown = screen.getByTestId(/month-select/i) as HTMLSelectElement;
     const yearDropdown = screen.getByTestId(/year-select/i) as HTMLSelectElement;
@@ -77,7 +77,7 @@ describe('MonthChangeButtonSim Compoenent Tests', () => {
 
   test('December month increase resets month and increases year', () => {
     jest.useFakeTimers().setSystemTime(new Date(2024, 11, 15).getTime()); // Set mock current date (Dec 15, 2024)
-    render(<MonthChangeButtonSims />);
+    render(<MonthChangeButton />);
 
     const monthDropdown = screen.getByTestId(/month-select/i) as HTMLSelectElement;
     const yearDropdown = screen.getByTestId(/year-select/i) as HTMLSelectElement;
@@ -93,7 +93,7 @@ describe('MonthChangeButtonSim Compoenent Tests', () => {
 
   test('changes to previous year when decrease month from January', () => {
     jest.useFakeTimers().setSystemTime(new Date(2024, 0, 15).getTime()); // Set mock current date (Jan 15, 2024)
-    render(<MonthChangeButtonSims />);
+    render(<MonthChangeButton />);
 
     const monthDropdown = screen.getByTestId(/month-select/i) as HTMLSelectElement;
     const yearDropdown = screen.getByTestId(/year-select/i) as HTMLSelectElement;
