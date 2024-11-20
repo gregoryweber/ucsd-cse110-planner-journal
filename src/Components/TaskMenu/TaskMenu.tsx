@@ -30,7 +30,9 @@ const TaskMenu: React.FC = () => {
         id: taskMenuContext.tasks[taskMenuContext.currentDate.toISOString().split('T')[0]]?.length + 1 || 1,
         name: taskName,
         start: convertTo12HourFormat(startTime),
-        end: convertTo12HourFormat(endTime)
+        end: convertTo12HourFormat(endTime),
+        isReminder: isReminder,
+        reminderTime: isReminder ? Number(reminderTime) : undefined,
     };
 
     if (taskMenuContext.currentDate) {

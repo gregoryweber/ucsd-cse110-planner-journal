@@ -1,28 +1,50 @@
 {
-  "name": "ucsd-cse110-planner-journal",
-  "version": "1.0.0",
-  "description": "Architecture: Client-Server with two separate files containing components for the Client and the Server, ability to pivot server to local storage",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@aws-amplify/backend": "^1.7.0",
-    "@aws-amplify/backend-cli": "^1.4.2",
-    "@types/aws-lambda": "^8.10.145",
-    "@types/mute-stream": "^0.0.4",
-    "@types/wrap-ansi": "^8.0.2",
-    "aws-cdk": "^2.167.1",
-    "aws-cdk-lib": "^2.167.1",
-    "constructs": "^10.4.2",
-    "esbuild": "^0.24.0",
-    "tsx": "^4.19.2",
-    "typescript": "^5.6.3"
-  },
+  "name": "planner-journal",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "aws-amplify": "^6.8.2"
+    "@aws-amplify/backend": "^1.8.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.116",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@uiw/react-color": "^2.3.2",
+    "amplify": "^0.0.11",
+    "aws-amplify": "^6.8.2",
+    "react": "^18.3.1",
+    "react-datepicker": "^7.5.0",
+    "react-dom": "^18.3.1",
+    "react-scripts": "^5.0.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1"
   }
 }

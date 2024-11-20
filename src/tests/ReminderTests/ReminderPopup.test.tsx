@@ -11,20 +11,27 @@ describe('ReminderPopup Component', () => {
   });
 
   test('renders the popup when not muted', () => {
-    render(<ReminderPopup />);
+    const onCloseMock = jest.fn();
+    const taskName = 'Test Task';
+    render(<ReminderPopup taskName={taskName} onClose={onCloseMock} />);
     expect(screen.getByText(/Reminder!/i)).toBeInTheDocument();
     expect(screen.getByText(/Mute/i)).toBeInTheDocument();
+    expect(screen.getByText(taskName)).toBeInTheDocument();
   });
 
   test('does not render the popup when muted', () => {
     // Set 'reminderMuted' to 'true' in localStorage
     localStorage.setItem('reminderMuted', 'true');
-    render(<ReminderPopup />);
+    const onCloseMock = jest.fn();
+    const taskName = 'Test Task';
+    render(<ReminderPopup taskName={taskName} onClose={onCloseMock} />);
     expect(screen.queryByText(/Reminder!/i)).not.toBeInTheDocument();
   });
 
   test('clicking mute button hides the popup and sets muted in localStorage', () => {
-    render(<ReminderPopup />);
+    const onCloseMock = jest.fn();
+    const taskName = 'Test Task';
+    render(<ReminderPopup taskName={taskName} onClose={onCloseMock} />);
     const muteButton = screen.getByText(/Mute/i);
     fireEvent.click(muteButton);
 
@@ -33,10 +40,15 @@ describe('ReminderPopup Component', () => {
 
     // 'reminderMuted' should be set to 'true' in localStorage
     expect(localStorage.getItem('reminderMuted')).toBe('true');
+
+    // onClose should have been called
+    expect(onCloseMock).toHaveBeenCalled();
   });
 
   test('clicking close button hides the popup temporarily', () => {
-    render(<ReminderPopup />);
+    const onCloseMock = jest.fn();
+    const taskName = 'Test Task';
+    render(<ReminderPopup taskName={taskName} onClose={onCloseMock} />);
     const closeButton = screen.getByRole('button', { name: /×/i });
     fireEvent.click(closeButton);
 
@@ -45,13 +57,19 @@ describe('ReminderPopup Component', () => {
 
     // 'reminderMuted' should not be set in localStorage
     expect(localStorage.getItem('reminderMuted')).not.toBe('true');
+
+    // onClose should have been called
+    expect(onCloseMock).toHaveBeenCalled();
   });
 
+  // Uncomment and adjust this test if your component listens to 'unmute' event
   /*
   test('popup reappears when unmute event is dispatched', () => {
     // Set 'reminderMuted' to 'true' in localStorage
     localStorage.setItem('reminderMuted', 'true');
-    render(<ReminderPopup />);
+    const onCloseMock = jest.fn();
+    const taskName = 'Test Task';
+    render(<ReminderPopup taskName={taskName} onClose={onCloseMock} />);
 
     // The popup should not be visible initially
     expect(screen.queryByText(/Reminder!/i)).not.toBeInTheDocument();
