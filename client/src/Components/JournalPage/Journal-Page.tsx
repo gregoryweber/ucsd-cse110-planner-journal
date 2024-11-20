@@ -28,7 +28,12 @@ const JournalPage: React.FC = () => {
 
   const handleSectionSelection = (section: Section) => {
     setSectionSelection(section.name);
-  }
+  };
+
+  const handleReturn = () => {
+    journalPageContext.setIsOpen(false);
+    journalPageContext.setCurrentDate(null);
+  };
 
   return (
     <div style={{ 
@@ -57,7 +62,9 @@ const JournalPage: React.FC = () => {
         padding: '10px 15px',
         borderRadius: '5px',
         border: 'none'
-      }}>
+      }}
+      onClick={handleReturn}
+      >
         Return to Planner
       </button>
 
