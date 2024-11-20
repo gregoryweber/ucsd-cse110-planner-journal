@@ -140,6 +140,6 @@ const MonthChangeButtonSims: React.FC = () =>{
   );
 }
 
-export default MonthChangeButtonSims;
+export default MonthChangeButton;
 
 
