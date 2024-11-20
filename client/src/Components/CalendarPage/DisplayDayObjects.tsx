@@ -3,7 +3,7 @@ import DayObject from "../DayObject/DayObject";
 import { MonthChangeContext } from "../MonthChangeButton/MonthChangeContext";
 
 const DayObjects = () => {
-    const {currentYear, currentMonth, setCurrentMonth, setCurrentYear} = useContext(MonthChangeContext);
+    const {currentYear, currentMonth} = useContext(MonthChangeContext);
     
     
 
