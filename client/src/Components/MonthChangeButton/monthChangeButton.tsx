@@ -11,7 +11,9 @@ import { MonthChangeContext } from "./MonthChangeContext";
 
 
 const MonthChangeButton: React.FC = () =>{
+
   const monthChangeContext = useContext(MonthChangeContext);
+
   
   const [selectedDate, setSelectedDate] = useState(new Date()); // Default to current date
   monthChangeContext.setCurrentMonth(selectedDate.getMonth());

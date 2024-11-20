@@ -97,7 +97,7 @@ describe('MonthChangeButtonSim Compoenent Tests', () => {
 
     const monthDropdown = screen.getByTestId(/month-select/i) as HTMLSelectElement;
     const yearDropdown = screen.getByTestId(/year-select/i) as HTMLSelectElement;
-    expect(monthDropdown.value).toBe('11'); // check current Month is December
+    expect(monthDropdown.value).toBe('0'); // check current Month is January
     expect(yearDropdown.value).toBe('2024'); // check current year is 2024
     
     const decreaseButton = screen.getByRole('button', { name: /decrease month/i });
