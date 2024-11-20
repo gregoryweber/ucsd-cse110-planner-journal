@@ -46,7 +46,7 @@ const MonthChangeButton: React.FC = () =>{
     const currentMonth = selectedDate.getMonth();
     const currentYear = selectedDate.getFullYear();
 
-    if (currentMonth == 11) { // If current month is December (11)
+    if (currentMonth === 11) { // If current month is December (11)
     
       setSelectedDate(new Date(currentYear + 1, 0)); 
     } else {
@@ -62,7 +62,7 @@ const MonthChangeButton: React.FC = () =>{
   const decreaseMonth = () => {
     const currentMonth = selectedDate.getMonth();
     const currentYear = selectedDate.getFullYear();
-    if (currentMonth == 0) { // If current month is January (0)
+    if (currentMonth === 0) { // If current month is January (0)
       
       setSelectedDate(new Date(currentYear - 1, 11));
     } else {
