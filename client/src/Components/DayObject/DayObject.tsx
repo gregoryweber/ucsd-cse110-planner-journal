@@ -43,8 +43,9 @@ const AddTaskButton = ({currentDate}: AddTaskButtonProps) => {
     const taskMenuContext = useContext(TaskMenuContext);
 
     const handleClick = () => {
-        taskMenuContext.setIsOpen(true);
+        taskMenuContext.setIsOpen(!taskMenuContext.isOpen);
         taskMenuContext.setCurrentDate(currentDate);
+        
     };
 
     return (

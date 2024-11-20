@@ -44,7 +44,9 @@ describe("TaskMenu Component", () => {
   test("Create Task", () => {
     const mockAddTask = jest.fn();
     render(
-        <TaskMenuContext.Provider value={{ currentDate: new Date(2024, 10, 11), setCurrentDate: jest.fn(), isOpen: true, setIsOpen: jest.fn(), tasks: {}, addTask: mockAddTask, removeTask: jest.fn() }}>
+        <TaskMenuContext.Provider value={{ currentDate: new Date(2024, 10, 11), setCurrentDate: jest.fn(), 
+                isOpen: true, setIsOpen: jest.fn(), tasks: {}, setTasks: jest.fn(), 
+                addTask: mockAddTask, removeTask: jest.fn() }}>
             <TaskMenu />
         </TaskMenuContext.Provider>
     );
