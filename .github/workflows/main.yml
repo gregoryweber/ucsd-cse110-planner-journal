@@ -29,6 +29,8 @@ jobs:
 
       - name: Build Project
         run: npm run build
+        env:
+            CI: false
       
       - name: Run Unit Tests
         run: npm test
