@@ -5,29 +5,32 @@ The MonthChangeButton component should display a central banner with the current
 ## Unit Tests
 
 ## Test Suite 1
-### Test 1: leftButton decreases month
-- Verifies default month and year to be "November" and 2024
-- clicks left arrow button once
-- checks month is now "October"
-- checks that year remains 2024
+### Test 1: Initial dropdown values is current month and current year
+- Gets current month and year displayed in the dropdown menu
+- Verifies month value is 10 displaying "November"
+- Verifies year value to be 2024
 
-### Test 2: rightButton increases month
-- Verifies default month and year to be "November" and 2024
+### Test 2: rightbutton click increases display and dropdown value
 - clicks right arrow button once
 - checks month is now "December"
 - checks that year remains 2024
 
-### Test 3: leftButton decreases year
-- Verifies default month and year to be "November" and 2024
-- clicks left arrow button 11 times to cause rollover to previous year
-- checks month is now "December"
-- checks that year is now 2023
+### Test 3: leftbutton click decreases display and dropdown value
+- clicks left arrow button once
+- checks month is now "October"
+- checks that year remains 2024
 
-### Test 4: rightButton increases year
-- Verifies default month and year to be "November" and 2024
-- clicks left arrow button 11 times to cause rollover to previous year
+### Test 4: December month increase resets month and increases year
+- Sets current date to "December 15, 2024"
+- clicks right arrow button to cause rollover to next year
 - checks month is now "January"
-- checks that year is now 2025
+- checks that year is now 2024
+
+### Test 5: January month decreases resets month and decreases year
+- Sets current date to "January 15, 2024"
+- clicks left arrow button to cause rollover to previous year
+- checks month is now "January"
+- checks that year is now 2023
 
 
 
